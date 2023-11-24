@@ -6,20 +6,6 @@ public class ShieldBubbleAbility : Ability{
 
     [Header("Data")]
     [SerializeField] GameObject shieldPrefab;
-    
-
-
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public override void UseAbility(){
         if (Time.time - lastTimeUsed > cooldown) {
