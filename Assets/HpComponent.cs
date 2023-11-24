@@ -21,8 +21,13 @@ public class HpComponent : MonoBehaviourWithPause{
         currentHp = Mathf.Max(0,currentHp-pDamage);
         OnDamageTaken?.Invoke(currentHp, maxHp);
         if (currentHp == 0) {
-            Destroy(gameObject);
             OnDeath?.Invoke();
+            Destroy(gameObject);
         }
     }
+
+    public void RestoreHp(float pHp) {
+        currentHp = Mathf.Min(currentHp + pHp, maxHp);
+    }
+
 }

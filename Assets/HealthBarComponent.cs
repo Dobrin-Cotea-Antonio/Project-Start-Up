@@ -16,7 +16,6 @@ public class HealthBarComponent : MonoBehaviourWithPause{
 
     void UpdateHpBar(float pCurrentHp,float pMaxHp) {
         float hpPercentage = pCurrentHp / pMaxHp;
-        Debug.Log(hpPercentage * 100);
 
         text.text = string.Format("{0}% HP",System.Math.Round(hpPercentage * 100,2));
         hpImageBar.transform.localScale = new Vector2(hpPercentage, hpImageBar.transform.localScale.y);

@@ -7,9 +7,7 @@ public class GameManager : MonoBehaviourWithPause{
 
     public static bool gameIsPaused { get; set; }
 
-    public static int fallenTrees { get; set; }
-
-    public static GameObject robot { get; set; }
+    public GameObject player { get; set; }
 
     private void Awake(){
         if (gameManager != null)

@@ -30,6 +30,7 @@ public class Interaction : MonoBehaviourWithPause
 
     private void OnTriggerStay(Collider other){
         if (wasInteractKeyPressed&& other.CompareTag("Interactable")) {
+            other.gameObject.GetComponent<InteractableData>().PickUp();
             Destroy(other.gameObject);
             wasInteractKeyPressed = false;
         }

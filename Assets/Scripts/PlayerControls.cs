@@ -58,7 +58,13 @@ public class PlayerControls : MonoBehaviourWithPause {
     public MovementStates movementState { get; set; }
     public AttackStates attackState { get; set; }
 
+    private void Awake(){
+        
+    }
+
     void Start() {
+        GameManager.gameManager.player = gameObject;
+
         baseMovementSpeedMultiplier = 1;
         movementSpeedMultiplier = baseMovementSpeedMultiplier;
         
