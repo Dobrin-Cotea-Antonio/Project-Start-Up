@@ -1621,7 +1621,7 @@ GameObject:
   - component: {fileID: 1315703894}
   - component: {fileID: 1315703895}
   - component: {fileID: 1315703897}
-  - component: {fileID: 1315703896}
+  - component: {fileID: 1315703898}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1805,18 +1805,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
---- !u!114 &1315703896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315703885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0d6a2a2432cbc46ac20a5a1aa83c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1315703897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,7 +1817,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c3f305e5ec2bb40a528fff03dbe91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilities:
+  - {fileID: 1315703898}
   activeAbilityIndex: 0
+--- !u!114 &1315703898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315703885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93bd9f9a68b409428f723b88da5c637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDuration: 5
+  cooldown: 30
+  shieldPrefab: {fileID: 5127601771888801490, guid: 3d9cadfb78e77e94dbf850680037f0ff,
+    type: 3}
 --- !u!1 &1323309022
 GameObject:
   m_ObjectHideFlags: 0
