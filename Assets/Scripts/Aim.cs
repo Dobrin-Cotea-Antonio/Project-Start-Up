@@ -28,10 +28,12 @@ public class Aim : MonoBehaviourWithPause {
 
     PlayerControls player;
     InputManager input;
+    PlayerStatsData data;
 
     void Start() {
         player = GetComponent<PlayerControls>();
         input = GetComponent<InputManager>();
+        data = GetComponent<PlayerStatsData>();
 
     }
 
@@ -42,8 +44,6 @@ public class Aim : MonoBehaviourWithPause {
         if (player.attackState == PlayerControls.AttackStates.Idle) {
             return;
         }
-
-
 
         CastRay();
 
@@ -89,8 +89,8 @@ public class Aim : MonoBehaviourWithPause {
             if (player.attackState == PlayerControls.AttackStates.Idle)
                 return;
 
-            //spreadIndicator.SetActive(false);
-            player.movementSpeedMultiplier = player.baseMovementSpeedMultiplier;
+            data.AddMovementModifier("AimBonus", 0);
+
             player.attackState = PlayerControls.AttackStates.Idle;
             return;
         }
@@ -100,10 +100,8 @@ public class Aim : MonoBehaviourWithPause {
             if (player.attackState == PlayerControls.AttackStates.HipFire)
                 return;
 
-            //spreadIndicator.SetActive(true);
-            //spreadLeft.localEulerAngles = new Vector3(0, -spreadHipFire, 0);
-            //spreadRight.localEulerAngles = new Vector3(0, spreadHipFire, 0);
-            player.movementSpeedMultiplier = player.baseMovementSpeedMultiplier;
+            data.AddMovementModifier("AimBonus", 0);
+
             player.attackState = PlayerControls.AttackStates.HipFire;
 
             return;
@@ -114,10 +112,8 @@ public class Aim : MonoBehaviourWithPause {
             if (player.attackState == PlayerControls.AttackStates.Aim)
                 return;
 
-            //spreadIndicator.SetActive(true);
-            //spreadLeft.localEulerAngles = new Vector3(0, -spreadAim, 0);
-            //spreadRight.localEulerAngles = new Vector3(0, spreadAim, 0);
-            player.movementSpeedMultiplier = ((100f-aimSpeedDecrease)/100)*player.baseMovementSpeedMultiplier;
+            data.AddMovementModifier("AimBonus", aimSpeedDecrease);
+
             player.attackState = PlayerControls.AttackStates.Aim;
             return;
         }
@@ -127,10 +123,8 @@ public class Aim : MonoBehaviourWithPause {
             if (player.attackState == PlayerControls.AttackStates.AimAndShoot)
                 return;
 
-            //spreadIndicator.SetActive(true);
-            //spreadLeft.localEulerAngles = new Vector3(0, -spreadAim, 0);
-            //spreadRight.localEulerAngles = new Vector3(0, spreadAim, 0);
-            player.movementSpeedMultiplier = ((100f - aimSpeedDecrease) / 100) * player.baseMovementSpeedMultiplier;
+            data.AddMovementModifier("AimBonus", aimSpeedDecrease);
+
             player.attackState = PlayerControls.AttackStates.AimAndShoot;
             return;
         }
@@ -140,7 +134,7 @@ public class Aim : MonoBehaviourWithPause {
     void StateMachine() {
         switch (player.attackState) {
             case PlayerControls.AttackStates.Idle:
-
+                
                 break;
             case PlayerControls.AttackStates.HipFire:
                 ShootBullet(spreadHipFire);
@@ -151,18 +145,17 @@ public class Aim : MonoBehaviourWithPause {
                 break;
 
             case PlayerControls.AttackStates.AimAndShoot:
+                
+                //data.AddShootSpeedModifier(50);
                 ShootBullet(spreadAim);
                 break;
 
-
         }
-
-
 
     }
 
     void ShootBullet(float pSpread) {
-        if (Time.time - lastShotTime >= shotCooldown){
+        if (Time.time - lastShotTime >= shotCooldown*data.shootSpeedMultiplier){
             lastShotTime = Time.time;
             GameObject b1 = Instantiate(bulletPrefab, shootPositions[weaponToFire].position, Quaternion.identity);
             
@@ -175,6 +168,7 @@ public class Aim : MonoBehaviourWithPause {
             bullet1.transform.forward = Quaternion.Euler(0, 90+randomAngle, 0) * shootPositions[weaponToFire].forward;
             bullet1.AddSpeed(Quaternion.Euler(0,randomAngle,0)* shootPositions[weaponToFire].forward);
             weaponToFire = (weaponToFire + 1) % 2;
+
         }
     }
 }

@@ -26,14 +26,11 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     int availableDashCharges;
 
-    [Header("Stats")]
-    [SerializeField] float maxHp;
-    
 
-    public float movementSpeedMultiplier { get; set; }
-    public float baseMovementSpeedMultiplier { get; private set; }
+    // public float movementSpeedMultiplier { get; set; }
+    //public float baseMovementSpeedMultiplier { get; private set; }
 
-
+    PlayerStatsData data;
 
 
     public Vector3 right { get; private set; }
@@ -65,9 +62,8 @@ public class PlayerControls : MonoBehaviourWithPause {
     void Start() {
         GameManager.gameManager.player = gameObject;
 
-        baseMovementSpeedMultiplier = 1;
-        movementSpeedMultiplier = baseMovementSpeedMultiplier;
-        
+        //baseMovementSpeedMultiplier = 1;
+        //movementSpeedMultiplier = baseMovementSpeedMultiplier;
 
         right = Vector3.zero;
         forward = Vector3.zero;
@@ -77,6 +73,7 @@ public class PlayerControls : MonoBehaviourWithPause {
 
         rb = GetComponent<Rigidbody>();
         input = GetComponent<InputManager>();
+        data = GetComponent<PlayerStatsData>();
 
         interactionSphere.transform.localScale = new Vector3(interactionRange, interactionRange, interactionRange);
         availableDashCharges = dashChargesMax;
@@ -94,7 +91,6 @@ public class PlayerControls : MonoBehaviourWithPause {
 
 
         StateMachineChooseState();
-
     }
 
     void StateMachineExecution(){
@@ -115,7 +111,7 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     void StateMachineChooseState() {
         switch (movementState){
-            case MovementStates.Idle:
+            case MovementStates.Idle:   
                 IdleState();
                 break;
             case MovementStates.Walk:
@@ -135,7 +131,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     void WalkState() {
         Vector3 direction = right * input.moveDirection.x + forward * input.moveDirection.z;
 
-        Vector3 force = direction * moveSpeed * movementSpeedMultiplier;
+        Vector3 force = direction * moveSpeed * data.movementSpeedMultiplier;
 
         if (force.magnitude < 0.001) {
             movementState = MovementStates.Idle;
@@ -152,7 +148,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     void Walk(){
 
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        Vector3 force = walkDirection * moveSpeed * movementSpeedMultiplier;
+        Vector3 force = walkDirection * moveSpeed * data.movementSpeedMultiplier;
 
         SetModelDirection(force);
         rb.AddForce(force, ForceMode.VelocityChange);
