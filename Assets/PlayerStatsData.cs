@@ -6,15 +6,23 @@ public class PlayerStatsData : MonoBehaviourWithPause{
    
     public float movementSpeedMultiplier { get; private set; }
     public float shootSpeedMultiplier { get; private set; }
+    public float dashSpeedMultiplier { get; private set; }
+    public float bulletSpeedMultiplier { get; private set; }
 
     //List<float> movementModifiers=new List<float>();
     Dictionary<string,float> movementSpeedModifiers=new Dictionary<string, float>();
 
     Dictionary<string, float> shootSpeedModifiers = new Dictionary<string, float>();
 
+    Dictionary<string, float> dashSpeedModifiers = new Dictionary<string, float>();
+
+    Dictionary<string, float> bulletSpeedModifiers = new Dictionary<string, float>();
+
     private void Awake(){
         movementSpeedMultiplier = 1.0f;
         shootSpeedMultiplier = 1.0f;
+        dashSpeedMultiplier = 1.0f;
+        bulletSpeedMultiplier = 1.0f;
     }
 
     public void AddMovementModifier(string pString,float pModif) {//pModif is a percentage
@@ -25,9 +33,6 @@ public class PlayerStatsData : MonoBehaviourWithPause{
         movementSpeedModifiers[pString] = pModif;
 
         movementSpeedMultiplier = movementSpeedMultiplier + pModif / 100;
-
-        //Debug.Log(movementSpeedMultiplier);
-        //movementSpeedMultiplier = Mathf.Max(0, movementSpeedMultiplier + pModif/100);
 
     }
 
@@ -40,8 +45,24 @@ public class PlayerStatsData : MonoBehaviourWithPause{
 
         shootSpeedMultiplier = shootSpeedMultiplier - pModif / 100;
 
-        Debug.Log(shootSpeedMultiplier);
-        //shootSpeedMultiplier = Mathf.Max(0.1f, shootSpeedMultiplier - pModif/100);
+    }
+
+
+    public void AddDashSpeedModifier(string pString,float pModif) {
+        if (dashSpeedModifiers.ContainsKey(pString)) {
+            dashSpeedMultiplier = dashSpeedMultiplier - dashSpeedModifiers[pString] / 100;
+        }
+
+        dashSpeedModifiers[pString] = pModif;
+
+        dashSpeedMultiplier = dashSpeedMultiplier + pModif / 100;
+    }
+
+    public void AddBulletSpeedModifier(string pString, float pModif) {
+        if (bulletSpeedModifiers.ContainsKey(pString)) { 
+            
+        }
+    
     }
 
 }

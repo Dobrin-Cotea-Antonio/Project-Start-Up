@@ -23,6 +23,7 @@ public class OverdriveAbility : Ability{
     }
 
     IEnumerator EnableAbility() {
+        isActive = true;
 
         data.AddMovementModifier("OverdriveBonus", movementSpeedBonus);
         data.AddShootSpeedModifier("OverdriveBonus",shootSpeedBonus);
@@ -30,6 +31,7 @@ public class OverdriveAbility : Ability{
 
         data.AddMovementModifier("OverdriveBonus", 0);
         data.AddShootSpeedModifier("OverdriveBonus",0);
-        
+
+        isActive = false;
     }
 }

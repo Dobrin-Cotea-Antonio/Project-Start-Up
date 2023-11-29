@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RestoreFunctionality : MonoBehaviourWithPause{
+public class healingFunctionality : MonoBehaviourWithPause{
 
     [Header("Data")]
     [SerializeField] float hpRestored;

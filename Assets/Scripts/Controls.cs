@@ -22,7 +22,8 @@ public class Controls : MonoBehaviourWithPause{
             keyList.Add("sprint", KeyCode.LeftShift);
             keyList.Add("dash", KeyCode.Space);//new key
             //interaction
-            keyList.Add("interact", KeyCode.E);
+            keyList.Add("interact", KeyCode.F);
+            keyList.Add("interact2", KeyCode.G);
             keyList.Add("shop", KeyCode.H);
             keyList.Add("robotSpawn", KeyCode.G);
             keyList.Add("pause", KeyCode.Tab);
@@ -31,6 +32,7 @@ public class Controls : MonoBehaviourWithPause{
             keyList.Add("aim", KeyCode.Mouse1);
             keyList.Add("reload", KeyCode.R);
             keyList.Add("ability1", KeyCode.Q);
+            keyList.Add("ability2",KeyCode.E);
             keyList.Add("axe", KeyCode.Alpha1);
             keyList.Add("revolver", KeyCode.Alpha2);
             keyList.Add("shotgun", KeyCode.Alpha4);

@@ -169,11 +169,11 @@ public class PlayerControls : MonoBehaviourWithPause {
 
 
     IEnumerator Dash(Vector3 pDirection) {
-        float speed = dashRange * (1 / dashDuration);
+        float speed = dashRange * (1 / dashDuration)*data.dashSpeedMultiplier;
 
         rb.AddForce(speed*pDirection, ForceMode.VelocityChange);
 
-        yield return new WaitForSeconds(dashDuration);
+        yield return new WaitForSecondsRealtime(dashDuration);
 
         StopDash();
     }
@@ -196,7 +196,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     }
 
     IEnumerator RecoverDashCharge() {
-        yield return new WaitForSeconds(dashCooldown);
+        yield return new WaitForSecondsRealtime(dashCooldown);
         availableDashCharges = Mathf.Min(availableDashCharges + 1,dashChargesMax);
     }
 

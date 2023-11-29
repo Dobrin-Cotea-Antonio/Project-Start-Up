@@ -14,7 +14,9 @@ public class InputManager : MonoBehaviourWithPause
     public bool aimInput { get; private set; }
     public bool shopInput { get; private set; }
     public bool interactionInput { get; private set; }
-    public bool skillInput { get; private set; }
+    public bool interactionInput2 { get; private set; }
+    public bool ability1Input { get; private set; }
+    public bool ability2Input { get; private set; }
     public bool spawnBot { get; private set; }
     public bool sprintInput { get; private set; }
     public bool dashInput { get; private set; }//new 
@@ -45,7 +47,9 @@ public class InputManager : MonoBehaviourWithPause
         aimInput = Input.GetKey(controls.keyList["aim"]);
         shopInput = Input.GetKeyUp(controls.keyList["shop"]);
         interactionInput = Input.GetKeyDown(controls.keyList["interact"]);
-        skillInput = Input.GetKeyDown(controls.keyList["ability1"]);
+        interactionInput2 = Input.GetKeyDown(controls.keyList["interact2"]);
+        ability1Input = Input.GetKeyDown(controls.keyList["ability1"]);
+        ability2Input = Input.GetKeyDown(controls.keyList["ability2"]);
         spawnBot = Input.GetKeyDown(controls.keyList["robotSpawn"]);
         sprintInput = Input.GetKey(controls.keyList["sprint"]);
 

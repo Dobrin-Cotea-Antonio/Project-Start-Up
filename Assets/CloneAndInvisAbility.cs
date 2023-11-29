@@ -20,7 +20,7 @@ public class CloneAndInvisAbility : Ability{
 
 
     IEnumerator CreateClone() {
-
+        isActive = true;
         lastTimeUsed = Time.time;
         GameObject clone = Instantiate(clonePrefab, transform.position, modelRotation.rotation);
         clone.GetComponent<ChangeTransparency>().SetTransparency(cloneTransparency);
@@ -28,7 +28,7 @@ public class CloneAndInvisAbility : Ability{
         yield return new WaitForSeconds(abilityDuration);
 
         Destroy(clone);
-    
+        isActive = false;
     }
 
 }

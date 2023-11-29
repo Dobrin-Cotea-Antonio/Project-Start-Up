@@ -17,9 +17,11 @@ public class ShieldBubbleAbility : Ability{
 
     IEnumerator CreateShield() {
         GameObject g = Instantiate(shieldPrefab, transform);
+        isActive = true;
 
         yield return new WaitForSeconds(abilityDuration);
 
+        isActive = false;
         Destroy(g);
 
     }

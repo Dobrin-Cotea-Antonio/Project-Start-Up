@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviourWithPause{
 
     public GameObject player { get; set; }
 
+    public int permanentCash { get; set; }
+    public int levelCash { get; set; }
+
     private void Awake(){
         if (gameManager != null)
             Destroy(gameObject);
@@ -16,5 +19,9 @@ public class GameManager : MonoBehaviourWithPause{
             DontDestroyOnLoad(gameObject);
             gameManager = this;
         }
+    }
+
+    private void Start(){
+        levelCash = 1000;
     }
 }
