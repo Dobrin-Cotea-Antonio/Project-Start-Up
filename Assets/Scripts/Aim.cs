@@ -10,9 +10,7 @@ public class Aim : MonoBehaviourWithPause {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] LayerMask maskGround;
     [SerializeField] LayerMask maskTargets;
-    [SerializeField] GameObject spreadIndicator;
-    [SerializeField] Transform spreadLeft;
-    [SerializeField] Transform spreadRight;
+    [SerializeField] Animator animator;
 
     [Header("Shooting Data")]
     [SerializeField] float spreadHipFire;//spread in degrees (final spread angle/2)
@@ -90,6 +88,13 @@ public class Aim : MonoBehaviourWithPause {
                 return;
 
             data.AddMovementModifier("AimBonus", 0);
+            if (player.movementState == PlayerControls.MovementStates.Walk || player.movementState == PlayerControls.MovementStates.Dash){
+                animator.SetInteger("gunState",1);
+            }
+            else {
+                animator.SetInteger("gunState", 0);
+            }
+
 
             player.attackState = PlayerControls.AttackStates.Idle;
             return;
@@ -101,6 +106,7 @@ public class Aim : MonoBehaviourWithPause {
                 return;
 
             data.AddMovementModifier("AimBonus", 0);
+            animator.SetInteger("gunState", 2);
 
             player.attackState = PlayerControls.AttackStates.HipFire;
 
@@ -113,6 +119,7 @@ public class Aim : MonoBehaviourWithPause {
                 return;
 
             data.AddMovementModifier("AimBonus", aimSpeedDecrease);
+            animator.SetInteger("gunState", 2);
 
             player.attackState = PlayerControls.AttackStates.Aim;
             return;
@@ -124,6 +131,7 @@ public class Aim : MonoBehaviourWithPause {
                 return;
 
             data.AddMovementModifier("AimBonus", aimSpeedDecrease);
+            animator.SetInteger("gunState", 3);
 
             player.attackState = PlayerControls.AttackStates.AimAndShoot;
             return;
@@ -146,7 +154,6 @@ public class Aim : MonoBehaviourWithPause {
 
             case PlayerControls.AttackStates.AimAndShoot:
                 
-                //data.AddShootSpeedModifier(50);
                 ShootBullet(spreadAim);
                 break;
 

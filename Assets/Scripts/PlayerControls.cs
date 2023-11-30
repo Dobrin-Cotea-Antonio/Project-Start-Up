@@ -12,6 +12,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     [SerializeField] Camera cameraMain;
     [SerializeField] GameObject interactionSphere;
     [SerializeField] GameObject modelHolder;
+    [SerializeField] Animator animator;
 
 
     [Header("Basic Interaction")]
@@ -110,6 +111,8 @@ public class PlayerControls : MonoBehaviourWithPause {
     }
 
     void StateMachineChooseState() {
+        ChooseWalkAnimationState();
+
         switch (movementState){
             case MovementStates.Idle:   
                 IdleState();
@@ -201,10 +204,91 @@ public class PlayerControls : MonoBehaviourWithPause {
     }
 
     void SetModelDirection(Vector3 pDirection) {//instead of setting the rotation instantly rotate it by a certain amount until the desired rotation is reached
-        if (attackState == AttackStates.Idle) {
+        if (attackState == AttackStates.Idle){
             //Debug.Log(attackState);
+
+
             modelHolder.transform.forward = new Vector3(pDirection.x, 0, pDirection.z).normalized;
         }
 
     }
+
+    void ChooseWalkAnimationState() {
+        if (attackState == AttackStates.Idle)
+            return;
+
+
+        Vector3 vector = transform.InverseTransformDirection(walkDirection * moveSpeed * data.movementSpeedMultiplier);
+
+        Vector2 v = new Vector2(vector.x, vector.z);
+        v.Normalize();
+
+        animator.SetFloat("X", v.x);
+        animator.SetFloat("Y", v.y);
+
+        Debug.Log(v);
+
+
+        //Debug.Log(new Vector2(1,1).normalized);
+
+        //Vector3 pDirection = walkDirection * moveSpeed * data.movementSpeedMultiplier;
+
+        //pDirection.Normalize();
+        //float angle = Vector3.Angle(modelHolder.transform.forward, pDirection);
+
+        //float signedAngle = Vector3.SignedAngle(modelHolder.transform.forward, pDirection, Vector3.up);
+
+        ////Debug.Log(angle + " " + signedAngle);
+
+        //ClearWalkParameters();
+
+        //if (-22.5f <= signedAngle && signedAngle <= 22.5f)
+        //{
+        //    animator.SetBool("W", true);
+        //    return;
+        //}//forward
+
+        //if (22.5f <= signedAngle && signedAngle <= 67.5f)
+        //{
+        //    animator.SetBool("WD", true);
+        //    return;
+        //}
+
+        //if (67.5f <= signedAngle && signedAngle <= 112.5f)
+        //{
+        //    animator.SetBool("D", true);
+        //    return;
+        //}
+
+        //if (-67.5f <= signedAngle && signedAngle <= -22.5f)
+        //{
+        //    animator.SetBool("AW", true);
+        //    return;
+        //}
+        //if (-112.5f <= signedAngle && signedAngle <= -67.5f)
+        //{
+        //    animator.SetBool("A", true);
+        //    return;
+        //}
+
+        //animator.SetBool("W", true);
+        //animator.SetFloat("speed", 0.5f);
+
+        //Debug.Log(animator.GetFloat("speed"));
+
+
+        //transform.inversetransformVector
+
+    }
+
+    void ClearWalkParameters() {
+        animator.SetBool("A", false);
+        animator.SetBool("AW", false);
+        animator.SetBool("W", false);
+        animator.SetBool("WD", false);
+        animator.SetBool("D", false);
+        animator.SetBool("S", false);
+        animator.SetFloat("speed",1);
+    }
+
 }

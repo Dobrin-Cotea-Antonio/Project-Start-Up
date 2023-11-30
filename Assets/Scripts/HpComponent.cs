@@ -11,12 +11,20 @@ public class HpComponent : MonoBehaviourWithPause{
     public event Action<float, float> OnDamageTaken;
     public event Action OnDeath;
 
+    ExplosionCollider explosionCollider;
     private void Start(){
         currentHp = maxHp;
         OnDamageTaken?.Invoke(currentHp, maxHp);
     }
 
-    public void TakeDamage(float pDamage) {
+    public void TakeDamage(float pDamage,ExplosionCollider explColl=null) {
+
+        if (explColl != null) {
+            if (explosionCollider == explColl) {
+                return;
+            }
+            explosionCollider = explColl;
+        }
 
         currentHp = Mathf.Max(0,currentHp-pDamage);
         OnDamageTaken?.Invoke(currentHp, maxHp);

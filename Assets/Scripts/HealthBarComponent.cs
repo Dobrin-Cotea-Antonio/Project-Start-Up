@@ -22,17 +22,26 @@ public class HealthBarComponent : MonoBehaviourWithPause{
     }
 
     private void Start(){
+        if (canvas == null)
+            return;
+
         if (dissapearAfterTime)
             canvas.SetActive(false);
     }
 
     protected override void UpdateWithPause() {
+        if (canvas == null)
+            return;
+
         if (dissapearAfterTime && Time.time - lastActiveTime >= timeToDissapear)
             canvas.SetActive(false);
         
     }
 
     void UpdateHpBar(float pCurrentHp, float pMaxHp) {
+
+        if (canvas == null)
+            return;
 
         if (dissapearAfterTime && enableCanvas) {
             canvas.SetActive(true);
