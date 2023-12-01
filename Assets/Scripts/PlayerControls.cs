@@ -214,11 +214,26 @@ public class PlayerControls : MonoBehaviourWithPause {
     }
 
     void ChooseWalkAnimationState() {
-        if (attackState == AttackStates.Idle)
+        if (attackState == AttackStates.Idle) {
+            if (rb.velocity.magnitude <= 0.01){
+                animator.SetFloat("X", 0f);
+                animator.SetFloat("Y", 0f);
+            }
+            else {
+                animator.SetFloat("X", 0f);
+                animator.SetFloat("Y", -1f);
+            }
+
             return;
+        }
 
+        if (rb.velocity.magnitude <= 0.01){
+            animator.SetFloat("X", 0f);
+            animator.SetFloat("Y", 0f);
+            return;
+        }
 
-        Vector3 vector = transform.InverseTransformDirection(walkDirection * moveSpeed * data.movementSpeedMultiplier);
+        Vector3 vector = modelHolder.transform.InverseTransformDirection(walkDirection * moveSpeed * data.movementSpeedMultiplier);
 
         Vector2 v = new Vector2(vector.x, vector.z);
         v.Normalize();
@@ -226,69 +241,13 @@ public class PlayerControls : MonoBehaviourWithPause {
         animator.SetFloat("X", v.x);
         animator.SetFloat("Y", v.y);
 
-        Debug.Log(v);
+        //Debug.Log(v);
+        //tweeen to be smooth   
 
 
-        //Debug.Log(new Vector2(1,1).normalized);
-
-        //Vector3 pDirection = walkDirection * moveSpeed * data.movementSpeedMultiplier;
-
-        //pDirection.Normalize();
-        //float angle = Vector3.Angle(modelHolder.transform.forward, pDirection);
-
-        //float signedAngle = Vector3.SignedAngle(modelHolder.transform.forward, pDirection, Vector3.up);
-
-        ////Debug.Log(angle + " " + signedAngle);
-
-        //ClearWalkParameters();
-
-        //if (-22.5f <= signedAngle && signedAngle <= 22.5f)
-        //{
-        //    animator.SetBool("W", true);
-        //    return;
-        //}//forward
-
-        //if (22.5f <= signedAngle && signedAngle <= 67.5f)
-        //{
-        //    animator.SetBool("WD", true);
-        //    return;
-        //}
-
-        //if (67.5f <= signedAngle && signedAngle <= 112.5f)
-        //{
-        //    animator.SetBool("D", true);
-        //    return;
-        //}
-
-        //if (-67.5f <= signedAngle && signedAngle <= -22.5f)
-        //{
-        //    animator.SetBool("AW", true);
-        //    return;
-        //}
-        //if (-112.5f <= signedAngle && signedAngle <= -67.5f)
-        //{
-        //    animator.SetBool("A", true);
-        //    return;
-        //}
-
-        //animator.SetBool("W", true);
-        //animator.SetFloat("speed", 0.5f);
-
-        //Debug.Log(animator.GetFloat("speed"));
-
-
-        //transform.inversetransformVector
+        
 
     }
 
-    void ClearWalkParameters() {
-        animator.SetBool("A", false);
-        animator.SetBool("AW", false);
-        animator.SetBool("W", false);
-        animator.SetBool("WD", false);
-        animator.SetBool("D", false);
-        animator.SetBool("S", false);
-        animator.SetFloat("speed",1);
-    }
 
 }

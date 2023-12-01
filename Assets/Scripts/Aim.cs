@@ -6,6 +6,7 @@ public class Aim : MonoBehaviourWithPause {
 
     [Header("Data")]
     public Transform[] shootPositions = new Transform[2];
+    [SerializeField] Transform refPoint;
     [SerializeField] GameObject modelHolder;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] LayerMask maskGround;
@@ -32,7 +33,7 @@ public class Aim : MonoBehaviourWithPause {
         player = GetComponent<PlayerControls>();
         input = GetComponent<InputManager>();
         data = GetComponent<PlayerStatsData>();
-
+        animator.SetBool("shootLeft", true);
     }
 
     protected override void UpdateWithPause() {
@@ -60,22 +61,39 @@ public class Aim : MonoBehaviourWithPause {
 
             aimPosition = new Vector3(cameraRayHit.point.x, shootPositions[weaponToFire].transform.position.y, cameraRayHit.point.z);
             Vector3 direction = cameraRayHit.point - modelHolder.transform.position;
-            //direction.y = 0;
+            direction.y = 0;
             direction.Normalize();
+
+            float angle = Vector3.SignedAngle(refPoint.forward,(cameraRayHit.point - refPoint.position),Vector3.up);
+
+            Debug.Log(angle);
+            animator.SetFloat("angle",angle);
+
+
             modelHolder.transform.forward = direction;
+            refPoint.transform.forward = direction;
+            
+
+
+
             return;
 
         }
 
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        
         if (Physics.Raycast(cameraRay, out cameraRayHit, Mathf.Infinity, maskGround)){
 
-            aimPosition = new Vector3(cameraRayHit.point.x, shootPositions[weaponToFire].transform.position.y, cameraRayHit.point.z);
+            //Debug.DrawLine(cameraRayHit.point+new Vector3(0,10,0),cameraRayHit.point,Color.red,0.1f);
+            
+            aimPosition = new Vector3(cameraRayHit.point.x, cameraRayHit.point.y, cameraRayHit.point.z);
             Vector3 direction = cameraRayHit.point - modelHolder.transform.position;
             direction.y = 0;
             direction.Normalize();
+
             modelHolder.transform.forward = direction;
+            refPoint.transform.forward = direction;
+            
 
         }
 
@@ -145,7 +163,7 @@ public class Aim : MonoBehaviourWithPause {
                 
                 break;
             case PlayerControls.AttackStates.HipFire:
-                ShootBullet(spreadHipFire);
+                //ShootBullet(spreadHipFire);
                 break;
 
             case PlayerControls.AttackStates.Aim:
@@ -154,15 +172,28 @@ public class Aim : MonoBehaviourWithPause {
 
             case PlayerControls.AttackStates.AimAndShoot:
                 
-                ShootBullet(spreadAim);
+                //ShootBullet(spreadAim);
                 break;
 
         }
 
     }
 
-    void ShootBullet(float pSpread) {
-        if (Time.time - lastShotTime >= shotCooldown*data.shootSpeedMultiplier){
+    public void ShootBullet() {
+        //if (Time.time - lastShotTime >= shotCooldown*data.shootSpeedMultiplier){
+
+        if (Time.time - lastShotTime < 0.1f)
+            return;
+
+            float pSpread = 0f;
+
+            if (player.attackState == PlayerControls.AttackStates.AimAndShoot) 
+                pSpread = spreadAim;
+
+
+            if (player.attackState == PlayerControls.AttackStates.HipFire)
+                pSpread = spreadHipFire;
+
             lastShotTime = Time.time;
             GameObject b1 = Instantiate(bulletPrefab, shootPositions[weaponToFire].position, Quaternion.identity);
             
@@ -176,6 +207,17 @@ public class Aim : MonoBehaviourWithPause {
             bullet1.AddSpeed(Quaternion.Euler(0,randomAngle,0)* shootPositions[weaponToFire].forward);
             weaponToFire = (weaponToFire + 1) % 2;
 
-        }
+            if (weaponToFire == 0){
+                Debug.Log("true");
+                animator.SetBool("shootLeft", true);
+            }
+
+            else {
+                Debug.Log("false");
+                animator.SetBool("shootLeft", false);
+            }
+                
+
+        //}
     }
 }
