@@ -3,103 +3,121 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
-{
-    public NavMeshAgent agent;
+public class EnemyAI : MonoBehaviour {
 
-    public Transform player;
+    [Header("Helper Stuff")]
+    protected Transform targetTransform;
+    protected MeshRenderer enemyRenderer;
+    protected Material material;
+    protected float distanceToPlayer;
+    protected float lastAttackTime = -100000;
 
-    public LayerMask whatIsGround, whatIsPlayer;
+    [Header("Stats")]
+    [SerializeField] float speed;
 
-    //Patrolling 
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
-    MeshRenderer renderer;
+    [Header("Data")]
+    [SerializeField] NavMeshAgent agent;
 
-    //Attacking
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
-    public GameObject projectile;
+    [Header("Chase")]
+    [SerializeField] bool canLoseAgro;
+    [SerializeField] float chaseRange;
 
-    //States
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    [Header("Attack")]
+    [SerializeField] float attackRange;
+    [SerializeField] float attackCooldown;
 
-    private void Awake()
-    {
-        player = GameObject.Find("PlayerObj").transform;
+    public enum EnemyStates {
+        Idle,
+        Chase,
+        Attack
+    }
+
+    public EnemyStates state { get; private set; }
+
+    private void Start(){
+        state = EnemyStates.Idle;
+
         agent = GetComponent<NavMeshAgent>();
-        renderer = GetComponent<MeshRenderer>();
-    }
+        enemyRenderer = GetComponent<MeshRenderer>();
 
-    private void Update()
-    {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if (playerInSightRange && !playerInAttackRange) Chasing();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
-
-        //OnDrawGizmosSelected();
-    }
-
-    //function for patrolling
-    private void Patrolling()
-    {
-        if (!walkPointSet) SearchWalkPoint();
-
-        if (walkPointSet)
-            agent.SetDestination(walkPoint);
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //Walkpoint reached 
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
-    }
-
-    private void SearchWalkPoint()
-    {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
-    }
-    //function for chasing 
-    private void Chasing()
-    {
         List<Material> materials = new List<Material>();
-        renderer.GetMaterials(materials);
-        materials[0].color = Color.yellow;
-        agent.SetDestination(player.position);
+        enemyRenderer.GetMaterials(materials);
+        material = materials[0];
+
+        agent.speed = speed;
+
+        targetTransform = GameManager.gameManager.player.transform;
     }
 
-    //function for attacking
-    private void AttackPlayer()
-    {
-        List<Material> materials = new List<Material>();
-        renderer.GetMaterials(materials);
-        materials[0].color = Color.red;
-        //Make sure enemy doesn't move 
-        agent.SetDestination(transform.position);
+    private void Update(){
+        distanceToPlayer = (targetTransform.position - transform.position).magnitude;
 
-        transform.LookAt(player);
+        StateMachine();
 
-        if (!alreadyAttacked)
-        {
-            //Rigidbody rb = Instantiate(projectile);
+    }
+
+    void StateMachine() {
+        switch (state) {
+            case EnemyStates.Idle:
+                IdleState();
+                break;
+            case EnemyStates.Chase:
+                ChaseState();
+                break;
+            case EnemyStates.Attack:
+                AttackState();
+                break;
         }
+    
     }
 
-    private void ResetAttack()
-    {
+    void IdleState() {
+
+        if (distanceToPlayer <= chaseRange) {
+            state = EnemyStates.Chase;
+            material.color = Color.yellow;
+            return;
+        }
 
     }
+
+    void ChaseState() {
+
+        if (canLoseAgro && distanceToPlayer < chaseRange) {
+            material.color = Color.green;
+            state = EnemyStates.Idle;
+            return;
+        }
+
+        if (distanceToPlayer <= attackRange) {
+            material.color = Color.red;
+            state = EnemyStates.Attack;
+            return;
+        }
+
+        agent.SetDestination(targetTransform.position);
+
+    }
+
+    void AttackState() {
+
+        agent.SetDestination(transform.position);
+        transform.LookAt(targetTransform);
+
+        if (distanceToPlayer > attackRange) {
+            material.color = Color.yellow;
+            state = EnemyStates.Chase;
+            return;
+        }
+
+        if (Time.time - lastAttackTime > attackCooldown) {
+            Attack();
+            lastAttackTime = Time.time;
+        }
+        
+    }
+
+    protected virtual void Attack() {}
 
     private void OnDrawGizmosSelected()
     {
@@ -107,7 +125,7 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
 
     }
 }
