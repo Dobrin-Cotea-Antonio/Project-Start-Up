@@ -8,6 +8,7 @@ public class AbilityPickUp : ItemPickUp{
     [SerializeField] int abilityIndex;
 
     InteractableData data;
+    string pickUpText= "Equip Ability";
 
     private void Start(){
         data = GetComponent<InteractableData>();
