@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
+
 
 public class PlayerControls : MonoBehaviourWithPause {
     // Start is called before the first frame update
@@ -56,14 +56,15 @@ public class PlayerControls : MonoBehaviourWithPause {
     public MovementStates movementState { get; set; }
     public AttackStates attackState { get; set; }
 
-    Vector3 lastForwardVector;
-
     private void Awake(){
         
     }
 
     void Start() {
         GameManager.gameManager.player = gameObject;
+
+        //baseMovementSpeedMultiplier = 1;
+        //movementSpeedMultiplier = baseMovementSpeedMultiplier;
 
         right = Vector3.zero;
         forward = Vector3.zero;
@@ -89,17 +90,20 @@ public class PlayerControls : MonoBehaviourWithPause {
             cameraMain.transform.rotation = cameraRotation;
         }
 
+
         StateMachineChooseState();
     }
 
     void StateMachineExecution(){
         switch (movementState){
             case MovementStates.Idle:
+                //IdleState();
                 break;
             case MovementStates.Walk:
                 Walk();
                 break;
             case MovementStates.Dash:
+                //DashState();
                 break;
 
         }
@@ -117,6 +121,7 @@ public class PlayerControls : MonoBehaviourWithPause {
                 WalkState();
                 break;
             case MovementStates.Dash:
+                //DashState();
                 break;
 
         }
@@ -200,15 +205,10 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     void SetModelDirection(Vector3 pDirection) {//instead of setting the rotation instantly rotate it by a certain amount until the desired rotation is reached
         if (attackState == AttackStates.Idle){
-            Vector3 newForward = new Vector3(pDirection.x, 0, pDirection.z).normalized;
-            if (newForward != modelHolder.transform.forward) {
-                float t = 0.2f;
-                if (newForward == -modelHolder.transform.forward)
-                    t = 0.0f;   
+            //Debug.Log(attackState);
 
-                DOTween.To(()=> modelHolder.transform.forward,x=> modelHolder.transform.forward=x,newForward,t);
-            }
 
+            modelHolder.transform.forward = new Vector3(pDirection.x, 0, pDirection.z).normalized;
         }
 
     }
@@ -243,6 +243,9 @@ public class PlayerControls : MonoBehaviourWithPause {
 
         //Debug.Log(v);
         //tweeen to be smooth   
+
+
+        
 
     }
 

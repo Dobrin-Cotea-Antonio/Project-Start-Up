@@ -24,7 +24,6 @@ public class Aim : MonoBehaviourWithPause {
 
     Vector3 aimPosition;
     float lastShotTime=-1000000;
-    Vector3 bulletAimPos;
 
     PlayerControls player;
     InputManager input;
@@ -58,11 +57,7 @@ public class Aim : MonoBehaviourWithPause {
 
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        bulletAimPos = Vector3.zero;
-
         if (Physics.Raycast(cameraRay, out cameraRayHit, Mathf.Infinity, maskTargets)){
-
-            bulletAimPos = cameraRayHit.point;
 
             aimPosition = new Vector3(cameraRayHit.point.x, shootPositions[weaponToFire].transform.position.y, cameraRayHit.point.z);
             Vector3 direction = cameraRayHit.point - modelHolder.transform.position;
@@ -73,8 +68,7 @@ public class Aim : MonoBehaviourWithPause {
 
             Debug.Log(angle);
             animator.SetFloat("angle",angle);
-            
-            
+
 
             modelHolder.transform.forward = direction;
             refPoint.transform.forward = direction;
@@ -210,23 +204,7 @@ public class Aim : MonoBehaviourWithPause {
 
             float randomAngle = Random.Range(-pSpread, pSpread);
             bullet1.transform.forward = Quaternion.Euler(0, 90+randomAngle, 0) * shootPositions[weaponToFire].forward;
-
-            //bullet1.AddSpeed(Quaternion.Euler(0,randomAngle,0)* shootPositions[weaponToFire].forward);
-            //bullet1.transform.forward = shootPositions[weaponToFire].forward;
-            Vector3 dir = Vector3.zero;
-            if (bulletAimPos != Vector3.zero){
-                dir = bulletAimPos - shootPositions[weaponToFire].position;
-                dir.Normalize();
-            }
-            else {
-                dir = shootPositions[weaponToFire].forward;
-                dir.Normalize();
-            }
-
-            bullet1.AddSpeed(dir);
-            
-            
-            
+            bullet1.AddSpeed(Quaternion.Euler(0,randomAngle,0)* shootPositions[weaponToFire].forward);
             weaponToFire = (weaponToFire + 1) % 2;
 
             if (weaponToFire == 0){
