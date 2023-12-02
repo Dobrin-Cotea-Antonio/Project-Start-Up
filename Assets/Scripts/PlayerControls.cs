@@ -9,6 +9,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     Rigidbody rb;
     InputManager input;
     [Header("Data")]
+    [SerializeField] Transform refPoint;
     [SerializeField] Camera cameraMain;
     [SerializeField] GameObject interactionSphere;
     [SerializeField] GameObject modelHolder;
@@ -202,11 +203,13 @@ public class PlayerControls : MonoBehaviourWithPause {
         if (attackState == AttackStates.Idle){
             Vector3 newForward = new Vector3(pDirection.x, 0, pDirection.z).normalized;
             if (newForward != modelHolder.transform.forward) {
-                float t = 0.2f;
-                if (newForward == -modelHolder.transform.forward)
-                    t = 0.0f;   
+                float t = 0.15f;
+                //if (newForward == -modelHolder.transform.forward)
+                //    t = 0.9f;   
 
+                // when  newForward == -modelHolder.transform.forward  split the tween in 2 
                 DOTween.To(()=> modelHolder.transform.forward,x=> modelHolder.transform.forward=x,newForward,t);
+                DOTween.To(() => refPoint.forward, x => refPoint.forward = x, newForward, t);
             }
 
         }

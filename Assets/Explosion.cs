@@ -16,18 +16,14 @@ public class Explosion : MonoBehaviourWithPause{
         hp.OnDeath += SpawnExplosion;
     }
 
-    // Update is called once per frame
-    protected override void UpdateWithPause(){
-        
-    }
-
     void SpawnExplosion() {
 
         Vector3 position;
         RaycastHit hit;
 
         Physics.Raycast(transform.position, Vector3.down, out hit, 10,mask);
-        position = hit.point+new Vector3(0,0.8f,0);
+        position = hit.point+new Vector3(0,1.15f,0)*explosionScale;
+        //was 0.8f
 
         GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
         explosion.transform.localScale = new Vector3(explosionScale, explosionScale, explosionScale);

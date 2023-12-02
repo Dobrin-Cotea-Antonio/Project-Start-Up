@@ -12,8 +12,11 @@ public class ExplosionCollider : MonoBehaviourWithPause{
         if (explosionData.timeSinceStart > timeToTakeDamage)
             return;
 
+        Debug.Log(other);
+
         HpComponent hp = other.gameObject.GetComponent<HpComponent>();
         if (hp != null){
+            Debug.Log(hp.gameObject);
             hp.TakeDamage(explosionDamage, this);
         }
     }

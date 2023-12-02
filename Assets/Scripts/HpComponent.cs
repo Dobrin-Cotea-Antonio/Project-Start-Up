@@ -24,6 +24,7 @@ public class HpComponent : MonoBehaviourWithPause{
                 return;
             }
             explosionCollider = explColl;
+            Debug.Log("AMBATUBLOW");
         }
 
         currentHp = Mathf.Max(0,currentHp-pDamage);

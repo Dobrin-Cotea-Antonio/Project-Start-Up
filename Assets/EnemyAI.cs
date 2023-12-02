@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviourWithPause {
 
     [Header("Helper Stuff")]
+    protected NavMeshAgent agent;
     protected Transform targetTransform;
     protected MeshRenderer enemyRenderer;
     protected Material material;
     protected float distanceToPlayer;
     protected float lastAttackTime = -100000;
+    protected bool canLeaveAttackState = true;
 
     [Header("Stats")]
     [SerializeField] float speed;
-
-    [Header("Data")]
-    [SerializeField] NavMeshAgent agent;
 
     [Header("Chase")]
     [SerializeField] bool canLoseAgro;
@@ -34,7 +33,7 @@ public class EnemyAI : MonoBehaviour {
 
     public EnemyStates state { get; private set; }
 
-    private void Start(){
+    protected virtual void Start(){
         state = EnemyStates.Idle;
 
         agent = GetComponent<NavMeshAgent>();
@@ -46,10 +45,14 @@ public class EnemyAI : MonoBehaviour {
 
         agent.speed = speed;
 
-        targetTransform = GameManager.gameManager.player.transform;
+        Debug.Log("starting");
     }
 
-    private void Update(){
+    protected override void UpdateWithPause(){
+        if (targetTransform == null) {
+            targetTransform = GameManager.gameManager.player.transform;
+        }
+
         distanceToPlayer = (targetTransform.position - transform.position).magnitude;
 
         StateMachine();
@@ -104,7 +107,7 @@ public class EnemyAI : MonoBehaviour {
         agent.SetDestination(transform.position);
         transform.LookAt(targetTransform);
 
-        if (distanceToPlayer > attackRange) {
+        if (canLeaveAttackState && distanceToPlayer > attackRange) {
             material.color = Color.yellow;
             state = EnemyStates.Chase;
             return;

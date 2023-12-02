@@ -71,7 +71,6 @@ public class Aim : MonoBehaviourWithPause {
 
             float angle = Vector3.SignedAngle(refPoint.forward,(cameraRayHit.point - refPoint.position),Vector3.up);
 
-            Debug.Log(angle);
             animator.SetFloat("angle",angle);
             
             
@@ -211,8 +210,6 @@ public class Aim : MonoBehaviourWithPause {
             float randomAngle = Random.Range(-pSpread, pSpread);
             bullet1.transform.forward = Quaternion.Euler(0, 90+randomAngle, 0) * shootPositions[weaponToFire].forward;
 
-            //bullet1.AddSpeed(Quaternion.Euler(0,randomAngle,0)* shootPositions[weaponToFire].forward);
-            //bullet1.transform.forward = shootPositions[weaponToFire].forward;
             Vector3 dir = Vector3.zero;
             if (bulletAimPos != Vector3.zero){
                 dir = bulletAimPos - shootPositions[weaponToFire].position;
@@ -230,12 +227,10 @@ public class Aim : MonoBehaviourWithPause {
             weaponToFire = (weaponToFire + 1) % 2;
 
             if (weaponToFire == 0){
-                Debug.Log("true");
                 animator.SetBool("shootLeft", true);
             }
 
             else {
-                Debug.Log("false");
                 animator.SetBool("shootLeft", false);
             }
                 
