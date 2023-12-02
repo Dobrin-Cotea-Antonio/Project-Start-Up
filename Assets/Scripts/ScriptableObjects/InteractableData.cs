@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using TMPro;
 
-[CreateAssetMenu(fileName = "Data", menuName = "BaseInteractableData")]
 public class InteractableData : MonoBehaviourWithPause{
 
     public Action OnPickUp;
