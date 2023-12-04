@@ -42,7 +42,9 @@ public class RoomManager : MonoBehaviourWithPause {
 
     void SpawnRoomReward() {
 
-        gameManager.currentRoomReward = GameManager.RewardTypes.Ability;//DELETE LATER
+
+        Debug.Log(gameManager.currentRoomReward);
+        //gameManager.currentRoomReward = GameManager.RewardTypes.Ability;//DELETE LATER
 
 
         switch (gameManager.currentRoomReward) {
@@ -57,11 +59,15 @@ public class RoomManager : MonoBehaviourWithPause {
     }
 
     void SpawnAbility() {
-        Debug.Log(abilityCards.Length);
 
-        Debug.Log(_abilityCards[0]);
+        List<int> abilityIndexes = new List<int>();
+        for (int i = 0; i < 4; i++)
+            if (i != gameManager.abilityManager._activeAbilityIndex1 && i != gameManager.abilityManager._activeAbilityIndex2)
+                abilityIndexes.Add(i);
 
-        int abilityIndex = Random.Range(0, abilityCards.Length);
-        Instantiate(abilityCards[abilityIndex], dropPoint.transform.position, Quaternion.identity);
+
+        int abilityIndex = Random.Range(0, abilityIndexes.Count);
+
+        Instantiate(abilityCards[abilityIndexes[abilityIndex]], dropPoint.transform.position, Quaternion.identity);
     }
 }

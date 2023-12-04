@@ -33,7 +33,7 @@ public class HpComponent : MonoBehaviourWithPause{
         OnDamageTaken?.Invoke(currentHp, maxHp);
         if (currentHp == 0) {
             OnDeath?.Invoke();
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
         }
     }
 

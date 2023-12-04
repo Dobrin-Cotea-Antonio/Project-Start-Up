@@ -24,6 +24,8 @@ public class Bullet : MonoBehaviourWithPause{
 
     private void OnCollisionEnter(Collision collision){
 
+        Debug.Log(collision.gameObject);
+
         HpComponent hp = collision.gameObject.GetComponent<HpComponent>();
 
         if (hp) {
@@ -48,7 +50,7 @@ public class Bullet : MonoBehaviourWithPause{
 
     public void AddSpeed(Vector3 direction) {
         if (rb.velocity.magnitude == 0) {
-            rb.AddForce(direction * speed, ForceMode.Impulse);
+            rb.AddForce(direction * speed, ForceMode.VelocityChange);
         }
     }
 }

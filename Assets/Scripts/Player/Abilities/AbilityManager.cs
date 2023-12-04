@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviourWithPause{
 
-
-    [SerializeField] GameObject[] abilitiesPrefabs;
     [SerializeField] Ability[] abilities;
     [SerializeField] AbilityUIManager abilityUIManager;
     [SerializeField] int activeAbilityIndex1;
     [SerializeField] int activeAbilityIndex2;
 
     InputManager input;
+
+    public int _activeAbilityIndex1 { get { return activeAbilityIndex1; } private set { activeAbilityIndex1 = value; } }
+    public int _activeAbilityIndex2 { get { return activeAbilityIndex2; } private set { activeAbilityIndex2 = value; } }
 
     void Start(){
         input = GetComponent<InputManager>();
@@ -56,7 +57,7 @@ public class AbilityManager : MonoBehaviourWithPause{
             abilities[activeAbilityIndex1].OnAbilityEnd = null;
             abilities[activeAbilityIndex1].ResetCooldown();
 
-            Instantiate(abilitiesPrefabs[activeAbilityIndex1], transform.position, Quaternion.identity);
+            Instantiate(RoomManager.roomManager._abilityCards[activeAbilityIndex1], transform.position, Quaternion.identity);
         }
 
 
@@ -76,7 +77,7 @@ public class AbilityManager : MonoBehaviourWithPause{
             abilities[activeAbilityIndex2].OnAbilityEnd = null;
             abilities[activeAbilityIndex2].ResetCooldown();
 
-            Instantiate(abilitiesPrefabs[activeAbilityIndex2], transform.position, Quaternion.identity);
+            Instantiate(RoomManager.roomManager._abilityCards[activeAbilityIndex2], transform.position, Quaternion.identity);
         }
 
         abilityUIManager.ResetCooldown2();

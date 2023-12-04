@@ -6,22 +6,24 @@ using UnityEngine.VFX;
 public class SuicideBomberScript : EnemyAI{
 
     [Header("Explosion Data")]
+    [SerializeField] HpComponent hp;
     [SerializeField] float explosionScale;
     [SerializeField] GameObject explosionPrefab;
     [SerializeField] LayerMask mask;
     [SerializeField] float bombFuse;
 
-    HpComponent hp;
+    [Header("Animator")]
+    [SerializeField] Animator animator;
 
     protected override void Start(){
         base.Start();
 
-        hp = GetComponent<HpComponent>();
+        //hp = GetComponent<HpComponent>();
         hp.OnDeath += SpawnExplosion;
         canLeaveAttackState = false;
     }
 
-    void SpawnExplosion(){
+    public void SpawnExplosion(){
 
         Vector3 position;
         RaycastHit hit;
@@ -36,10 +38,13 @@ public class SuicideBomberScript : EnemyAI{
 
         effect.playRate = 1.75f;
 
+        Destroy(transform.root.gameObject);
+
     }
 
     protected override void Attack(){
-        StartCoroutine(StartBombTimer());
+        //StartCoroutine(StartBombTimer());
+        //lastAttackTime = Time.time;
     }
 
     IEnumerator StartBombTimer() {
@@ -48,15 +53,21 @@ public class SuicideBomberScript : EnemyAI{
         float frameDuration = bombFuse / frames;
 
         for (int i = 0; i < frames; i++) {
-            material.color = Color.Lerp(Color.red, Color.black, (i * frameDuration)/bombFuse);
-            //Debug.Log((i * frameDuration) / bombFuse);
             yield return new WaitForSeconds(frameDuration);
         }
 
         //yield return new WaitForSeconds(bombFuse);
         SpawnExplosion();
-        Destroy(gameObject);
+        //Destroy(transform.root.gameObject);
 
+    }
+
+    protected override void PlayAttackAnimation(){
+        animator.SetBool("Rolling", false);
+    }
+
+    protected override void PlayChaseAnimation(){
+        animator.SetBool("Rolling", true);
     }
 
 }

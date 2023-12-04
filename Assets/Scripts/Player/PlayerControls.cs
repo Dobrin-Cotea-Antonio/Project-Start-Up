@@ -28,11 +28,8 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     int availableDashCharges;
 
-
-    // public float movementSpeedMultiplier { get; set; }
-    //public float baseMovementSpeedMultiplier { get; private set; }
-
     PlayerStatsData data;
+    Vector3 cameraOffSet;
 
 
     public Vector3 right { get; private set; }
@@ -67,7 +64,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     void Start() {
         GameManager.gameManager.player = gameObject;
 
-       right = Vector3.zero;
+        right = Vector3.zero;
         forward = Vector3.zero;
 
         movementState = MovementStates.Walk;
@@ -82,6 +79,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     }
 
     protected override void UpdateWithPause() {
+
         if (right == Vector3.zero) {
 
             Quaternion cameraRotation = cameraMain.transform.rotation;
@@ -235,8 +233,7 @@ public class PlayerControls : MonoBehaviourWithPause {
             return;
         }
 
-        if (rb.velocity.magnitude <= 0.01)
-        {
+        if (rb.velocity.magnitude <= 0.01){
             TweenAnimatorState(0, 0, t);
             return;
         }
@@ -245,43 +242,8 @@ public class PlayerControls : MonoBehaviourWithPause {
         Vector2 v = new Vector2(vector.x, vector.z);
         v.Normalize();
 
-        //Debug.Log(v);
 
         TweenAnimatorState(v.x, v.y, t);
-
-        //if (attackState == AttackStates.Idle)
-        //{
-        //    if (rb.velocity.magnitude <= 0.01)
-        //    {
-        //        animator.SetFloat("X", 0f);
-        //        animator.SetFloat("Y", 0f);
-        //    }
-        //    else
-        //    {
-        //        animator.SetFloat("X", 0f);
-        //        animator.SetFloat("Y", -1f);
-        //    }
-
-        //    return;
-        //}
-
-        //if (rb.velocity.magnitude <= 0.01)
-        //{
-        //    animator.SetFloat("X", 0f);
-        //    animator.SetFloat("Y", 0f);
-        //    return;
-        //}
-
-        //Vector3 vector = modelHolder.transform.InverseTransformDirection(walkDirection * moveSpeed * data.movementSpeedMultiplier);
-
-        //Vector2 v = new Vector2(vector.x, vector.z);
-        //v.Normalize();
-
-        //animator.SetFloat("X", v.x);
-        //animator.SetFloat("Y", v.y);
-
-        //Debug.Log(v);
-        ////tweeen to be smooth   
 
     }
 

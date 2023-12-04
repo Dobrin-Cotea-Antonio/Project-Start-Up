@@ -9,8 +9,6 @@ public class EnemyAI : MonoBehaviourWithPause {
     [Header("Helper Stuff")]
     protected NavMeshAgent agent;
     protected Transform targetTransform;
-    protected MeshRenderer enemyRenderer;
-    protected Material material;
     protected float distanceToPlayer;
     protected float lastAttackTime = -100000;
     protected bool canLeaveAttackState = true;
@@ -39,11 +37,6 @@ public class EnemyAI : MonoBehaviourWithPause {
         state = EnemyStates.Idle;
 
         agent = GetComponent<NavMeshAgent>();
-        enemyRenderer = GetComponent<MeshRenderer>();
-
-        List<Material> materials = new List<Material>();
-        enemyRenderer.GetMaterials(materials);
-        material = materials[0];
 
         agent.speed = speed;
 
@@ -77,9 +70,10 @@ public class EnemyAI : MonoBehaviourWithPause {
 
     void IdleState() {
 
+        PlayIdleAnimation();
+
         if (distanceToPlayer <= chaseRange) {
             state = EnemyStates.Chase;
-            material.color = Color.yellow;
             return;
         }
 
@@ -87,14 +81,14 @@ public class EnemyAI : MonoBehaviourWithPause {
 
     void ChaseState() {
 
+        PlayChaseAnimation();
+
         if (canLoseAgro && distanceToPlayer < chaseRange) {
-            material.color = Color.green;
             state = EnemyStates.Idle;
             return;
         }
 
         if (distanceToPlayer <= attackRange) {
-            material.color = Color.red;
             state = EnemyStates.Attack;
             return;
         }
@@ -109,17 +103,30 @@ public class EnemyAI : MonoBehaviourWithPause {
         transform.LookAt(targetTransform);
 
         if (canLeaveAttackState && distanceToPlayer > attackRange) {
-            material.color = Color.yellow;
             state = EnemyStates.Chase;
             return;
         }
 
+        if (agent.velocity.magnitude < 0.01)
+        {
+            PlayIdleAnimation();
+        }
+        else {
+            PlayChaseAnimation();
+        }
+
         if (Time.time - lastAttackTime > attackCooldown) {
+            PlayAttackAnimation();
             Attack();
-            lastAttackTime = Time.time;
         }
         
     }
+
+    protected virtual void PlayIdleAnimation() { }
+
+    protected virtual void PlayChaseAnimation() { }
+
+    protected virtual void PlayAttackAnimation() { } 
 
     protected virtual void Attack() {}
 
