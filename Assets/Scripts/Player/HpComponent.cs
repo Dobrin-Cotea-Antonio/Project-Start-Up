@@ -19,6 +19,9 @@ public class HpComponent : MonoBehaviourWithPause{
 
     public void TakeDamage(float pDamage,ExplosionCollider explColl=null) {
 
+        if (!isActiveAndEnabled)
+            return;
+
         if (explColl != null) {
             if (explosionCollider == explColl) {
                 return;

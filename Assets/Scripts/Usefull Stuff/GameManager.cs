@@ -8,16 +8,38 @@ public class GameManager : MonoBehaviourWithPause {
     public GameObject player { get; set; }
     public int permanentCash { get; set; }
     public int levelCash { get; set; }
-    public AbilityManager abilityManager { get ; set;}
-
+    public AbilityManager abilityManager { get; set; }
     public HpComponent playerHp { get; set; }
+    public PlayerUIManager playerUIManager { get ; set; }
+
+    public enum RewardTypes { 
+        Hp,
+        Shop,
+        Limb,
+        Ability,
+        HubCurrency,
+        Grenades,
+        None
+    }
+
+    public RewardTypes currentRoomReward { get; set; }
+    public RewardTypes nextRoomReward { get; set; }
+
 
     private void Awake(){
-        if (gameManager != null)
+        if (gameManager != null) {
+            gameManager.currentRoomReward = nextRoomReward;
+            gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 6));
+            Debug.Log(gameManager.nextRoomReward);
             Destroy(gameObject);
+        }
         else{
             DontDestroyOnLoad(gameObject);
             gameManager = this;
+            gameManager.currentRoomReward = RewardTypes.Ability;
+            gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 6));
+
+
         }
     }
 

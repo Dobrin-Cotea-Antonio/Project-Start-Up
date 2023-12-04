@@ -24,7 +24,6 @@ public class CrateDrops : MonoBehaviourWithPause{
     void Drop() {
 
         int randomNumber = Random.Range(1,101);
-        Debug.Log(randomNumber+" "+ (randomNumber <= restoreDropChance));
         if (randomNumber <= restoreDropChance) {
             Instantiate(hpRestore, transform.position,transform.rotation);
         }

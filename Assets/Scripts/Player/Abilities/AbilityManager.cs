@@ -54,6 +54,7 @@ public class AbilityManager : MonoBehaviourWithPause{
         if (activeAbilityIndex1 != -1) {
             abilities[activeAbilityIndex1].OnAbilityStart = null;
             abilities[activeAbilityIndex1].OnAbilityEnd = null;
+            abilities[activeAbilityIndex1].ResetCooldown();
 
             Instantiate(abilitiesPrefabs[activeAbilityIndex1], transform.position, Quaternion.identity);
         }
@@ -73,6 +74,7 @@ public class AbilityManager : MonoBehaviourWithPause{
         if (activeAbilityIndex2 != -1) {
             abilities[activeAbilityIndex2].OnAbilityStart = null;
             abilities[activeAbilityIndex2].OnAbilityEnd = null;
+            abilities[activeAbilityIndex2].ResetCooldown();
 
             Instantiate(abilitiesPrefabs[activeAbilityIndex2], transform.position, Quaternion.identity);
         }

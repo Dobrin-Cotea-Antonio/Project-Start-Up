@@ -19,14 +19,22 @@ abstract public class Ability : MonoBehaviourWithPause {
     public Action<float> OnAbilityStart;
     public Action<float> OnAbilityEnd;
 
+    protected Coroutine cooldownReset;
+
     protected virtual void Awake(){
         _image = image;
     }
 
     public abstract void UseAbility();
 
-    protected void ResetCooldown() {
-        StartCoroutine(CooldownTimer());
+    protected void StartResetCooldown() {
+        cooldownReset=StartCoroutine(CooldownTimer());
+    }
+
+    public void ResetCooldown() {
+        isOnCooldown = false;
+        if (cooldownReset!=null)
+            StopCoroutine(cooldownReset);
     }
 
     IEnumerator CooldownTimer() {

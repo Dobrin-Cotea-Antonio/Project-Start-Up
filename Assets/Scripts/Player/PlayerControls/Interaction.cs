@@ -31,7 +31,8 @@ public class Interaction : MonoBehaviourWithPause{
             InteractableData data = other.GetComponent<InteractableData>();
 
             if (data) {
-                data.UI.SetActive(true);
+                if (data.UI != null)
+                    data.UI.SetActive(true);
                 if (data.objectType is AbilityPickUp) {
                     if (data.isShopItem) {
                         UIManager.SetAbilityPickUpText("Buy",data.pickUpText,data.levelCost);
@@ -91,7 +92,8 @@ public class Interaction : MonoBehaviourWithPause{
     private void OnTriggerExit(Collider other){
         InteractableData data= other.GetComponent<InteractableData>();
         if (data) {
-            data.UI.SetActive(false);
+            if (data.UI!=null)
+                data.UI.SetActive(false);
             if (data.objectType is AbilityPickUp)
                 UIManager.EnableAbilityPickUpPrompt(false);
         }

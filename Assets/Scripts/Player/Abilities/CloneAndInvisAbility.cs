@@ -5,6 +5,7 @@ using UnityEngine;
 public class CloneAndInvisAbility : Ability{
 
     [Header("Data")]
+    [SerializeField] ChangeTransparency transparencyScript;
     [SerializeField] GameObject clonePrefab;
     [SerializeField] Transform modelRotation;
     [SerializeField] float cloneTransparency;
@@ -17,13 +18,14 @@ public class CloneAndInvisAbility : Ability{
     IEnumerator CreateClone() {
         isActive = true;
         isOnCooldown = true;
-
-        GameObject clone = Instantiate(clonePrefab, transform.position, modelRotation.rotation);
-        clone.GetComponent<ChangeTransparency>().SetTransparency(cloneTransparency);
+        
+        GameObject clone = Instantiate(clonePrefab, GetComponent<PlayerControls>().GetModelHolder().transform.position, modelRotation.rotation);
+        transparencyScript.SetTransparency(cloneTransparency);
         OnAbilityStart!.Invoke(abilityDuration);
         yield return new WaitForSecondsRealtime(abilityDuration);
+        transparencyScript.SetTransparency(1f);
         OnAbilityEnd!.Invoke(cooldown);
-        ResetCooldown();
+        StartResetCooldown();
 
         Destroy(clone);
         isActive = false;

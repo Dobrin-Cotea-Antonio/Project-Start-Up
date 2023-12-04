@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealingItem : ItemPickUp{
+public class HealingItem : Interactable{
 
     [Header("Data")]
     [SerializeField] float hpRestored;

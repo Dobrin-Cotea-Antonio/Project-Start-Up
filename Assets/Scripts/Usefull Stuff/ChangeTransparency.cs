@@ -20,6 +20,8 @@ public class ChangeTransparency : MonoBehaviourWithPause{
             allChildrenTransforms.Add(r);
         }
 
+        Debug.Log(allChildrenTransforms.Count);
+
         for (int i = 0; i < allChildrenTransforms.Count; i++){
             FindMaterialsAndChangeTransparency(allChildrenTransforms[i].GetComponent<Renderer>(), pTransparency);
 
@@ -36,7 +38,7 @@ public class ChangeTransparency : MonoBehaviourWithPause{
         foreach (Material m in materials)
         {
             m.color = new Color(m.color.r, m.color.g, m.color.b, pTransparency);
-            
+            Debug.Log("cock");
         }
     }
     

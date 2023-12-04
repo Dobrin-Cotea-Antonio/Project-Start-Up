@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract public class ItemPickUp : MonoBehaviourWithPause{
+abstract public class Interactable : MonoBehaviourWithPause{
     // Start is called before the first frame update
     void Start()
     {

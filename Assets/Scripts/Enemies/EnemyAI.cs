@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class EnemyAI : MonoBehaviourWithPause {
 
@@ -32,6 +33,7 @@ public class EnemyAI : MonoBehaviourWithPause {
     }
 
     public EnemyStates state { get; private set; }
+    public Action<EnemyAI> OnEnemyDeath;
 
     protected virtual void Start(){
         state = EnemyStates.Idle;
@@ -45,7 +47,6 @@ public class EnemyAI : MonoBehaviourWithPause {
 
         agent.speed = speed;
 
-        Debug.Log("starting");
     }
 
     protected override void UpdateWithPause(){
@@ -121,6 +122,10 @@ public class EnemyAI : MonoBehaviourWithPause {
     }
 
     protected virtual void Attack() {}
+
+    private void OnDestroy(){
+        OnEnemyDeath!.Invoke(this);
+    }
 
     private void OnDrawGizmosSelected()
     {

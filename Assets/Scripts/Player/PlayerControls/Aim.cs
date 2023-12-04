@@ -216,7 +216,7 @@ public class Aim : MonoBehaviourWithPause {
             dir.Normalize();
         }
 
-        bullet1.AddSpeed(dir);
+        bullet1.AddSpeed(dir*data.bulletSpeedMultiplier);
 
         weaponToFire = (weaponToFire + 1) % 2;
 

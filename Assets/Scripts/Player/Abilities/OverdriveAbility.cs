@@ -36,7 +36,7 @@ public class OverdriveAbility : Ability{
         OnAbilityStart!.Invoke(abilityDuration);
         yield return new WaitForSecondsRealtime(abilityDuration);
         OnAbilityEnd!.Invoke(cooldown);
-        ResetCooldown();
+        StartResetCooldown();
 
         data.AddMovementModifier("OverdriveBonus", 0);
         data.AddShootSpeedModifier("OverdriveBonus",0);

@@ -11,7 +11,7 @@ public class InteractableData : MonoBehaviourWithPause{
     [Header("")]
     public GameObject UI;
     public TextMeshProUGUI UItext;
-    public ItemPickUp objectType;
+    public Interactable objectType;
     public string popUpText;
     public string pickUpText;
     public int levelCost;
@@ -29,7 +29,8 @@ public class InteractableData : MonoBehaviourWithPause{
     }
 
     public void SetUIText(string pText) {
-        UItext.text = pText;
+        if (UItext!=null)
+            UItext.text = pText;
     }
 
 

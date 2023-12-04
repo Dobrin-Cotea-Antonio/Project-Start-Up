@@ -25,6 +25,7 @@ public class PlayerUIManager : MonoBehaviourWithPause{
     private void Start(){
         controls = Controls.controls;
         gameManager = GameManager.gameManager;
+        gameManager.playerUIManager = this;
     }
 
     protected override void UpdateWithPause(){

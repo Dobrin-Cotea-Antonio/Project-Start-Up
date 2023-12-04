@@ -59,10 +59,15 @@ public class PlayerStatsData : MonoBehaviourWithPause{
     }
 
     public void AddBulletSpeedModifier(string pString, float pModif) {
-        if (bulletSpeedModifiers.ContainsKey(pString)) { 
-            
+        if (bulletSpeedModifiers.ContainsKey(pString)) {
+            bulletSpeedMultiplier = bulletSpeedMultiplier - bulletSpeedModifiers[pString] / 100;
         }
-    
+
+        bulletSpeedModifiers[pString] = pModif;
+
+        bulletSpeedMultiplier = bulletSpeedMultiplier + pModif / 100;
+
+
     }
 
 }

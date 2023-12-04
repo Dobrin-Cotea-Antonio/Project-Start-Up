@@ -23,19 +23,21 @@ public class TimeSlowAbility : Ability{
         isOnCooldown = true;
 
         data.AddShootSpeedModifier("SlowTimeBonus", timeSlowPercentage);
-        data.AddMovementModifier("SlowTimeBonus",10000f/(100-timeSlowPercentage)-100);
+        data.AddMovementModifier("SlowTimeBonus", 10000f / (100 - timeSlowPercentage) - 100);
         data.AddDashSpeedModifier("SlowTimeBonus", 10000f / (100 - timeSlowPercentage) - 100);
+        data.AddBulletSpeedModifier("SlowTimeBonus", 10000f / (100 - timeSlowPercentage) - 100);
 
         Time.timeScale = (1 - timeSlowPercentage / 100);
         OnAbilityStart!.Invoke(abilityDuration);
         yield return new WaitForSecondsRealtime(abilityDuration);
         OnAbilityEnd!.Invoke(cooldown);
-        ResetCooldown();
+        StartResetCooldown();
 
         Time.timeScale = 1;
         data.AddMovementModifier("SlowTimeBonus", 0);
         data.AddShootSpeedModifier("SlowTimeBonus", 0);
         data.AddDashSpeedModifier("SlowTimeBonus", 0);
+        data.AddBulletSpeedModifier("SlowTimeBonus", 0);
 
         isActive = false;
 

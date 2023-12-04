@@ -57,6 +57,9 @@ public class PlayerControls : MonoBehaviourWithPause {
     public MovementStates movementState { get; set; }
     public AttackStates attackState { get; set; }
 
+    float animatorX;
+    float animatorY;
+
     private void Awake(){
         
     }
@@ -163,8 +166,6 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     }
 
-
-
     IEnumerator Dash(Vector3 pDirection) {
         float speed = dashRange * (1 / dashDuration)*data.dashSpeedMultiplier;
 
@@ -220,36 +221,77 @@ public class PlayerControls : MonoBehaviourWithPause {
     }
 
     void ChooseWalkAnimationState() {
-        if (attackState == AttackStates.Idle) {
-            if (rb.velocity.magnitude <= 0.01){
-                animator.SetFloat("X", 0f);
-                animator.SetFloat("Y", 0f);
-            }
-            else {
-                animator.SetFloat("X", 0f);
-                animator.SetFloat("Y", -1f);
-            }
+        float t = 0.15f;
 
+        animator.SetFloat("X", animatorX);
+        animator.SetFloat("Y", animatorY);
+
+        if (attackState == AttackStates.Idle)
+        {
+            if (rb.velocity.magnitude <= 0.01)
+                TweenAnimatorState(0, 0, t);
+            else
+                TweenAnimatorState(0, -1, t);
             return;
         }
 
-        if (rb.velocity.magnitude <= 0.01){
-            animator.SetFloat("X", 0f);
-            animator.SetFloat("Y", 0f);
+        if (rb.velocity.magnitude <= 0.01)
+        {
+            TweenAnimatorState(0, 0, t);
             return;
         }
 
         Vector3 vector = modelHolder.transform.InverseTransformDirection(walkDirection * moveSpeed * data.movementSpeedMultiplier);
-
         Vector2 v = new Vector2(vector.x, vector.z);
         v.Normalize();
 
-        animator.SetFloat("X", v.x);
-        animator.SetFloat("Y", v.y);
+        //Debug.Log(v);
+
+        TweenAnimatorState(v.x, v.y, t);
+
+        //if (attackState == AttackStates.Idle)
+        //{
+        //    if (rb.velocity.magnitude <= 0.01)
+        //    {
+        //        animator.SetFloat("X", 0f);
+        //        animator.SetFloat("Y", 0f);
+        //    }
+        //    else
+        //    {
+        //        animator.SetFloat("X", 0f);
+        //        animator.SetFloat("Y", -1f);
+        //    }
+
+        //    return;
+        //}
+
+        //if (rb.velocity.magnitude <= 0.01)
+        //{
+        //    animator.SetFloat("X", 0f);
+        //    animator.SetFloat("Y", 0f);
+        //    return;
+        //}
+
+        //Vector3 vector = modelHolder.transform.InverseTransformDirection(walkDirection * moveSpeed * data.movementSpeedMultiplier);
+
+        //Vector2 v = new Vector2(vector.x, vector.z);
+        //v.Normalize();
+
+        //animator.SetFloat("X", v.x);
+        //animator.SetFloat("Y", v.y);
 
         //Debug.Log(v);
-        //tweeen to be smooth   
+        ////tweeen to be smooth   
 
+    }
+
+    void TweenAnimatorState(float pX,float pY,float pTime) {
+
+        if (animatorX == pX && animatorY == pY)
+            return;
+
+        DOTween.To(() => animatorX, x => animatorX = x, pX, pTime);
+        DOTween.To(() => animatorY, y => animatorY = y, pY, pTime);
     }
 
     IEnumerator TurnAround(float pTime,Vector3 pForward) {
@@ -265,4 +307,8 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     }
 
+
+    public GameObject GetModelHolder() {
+        return modelHolder;
+    }
 }
