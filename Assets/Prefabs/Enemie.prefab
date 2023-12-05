@@ -501,7 +501,7 @@ Transform:
   m_GameObject: {fileID: 3426195118474020735}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 36.47, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2.884345, z: 1.2972279}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3426195117765370156}
@@ -617,6 +617,8 @@ MonoBehaviour:
   hpImageBar: {fileID: 3426195118420504106}
   text: {fileID: 3426195118903320625}
   hpComponent: {fileID: 3426195118474020728}
+  dissapearAfterTime: 0
+  timeToDissapear: 0
 --- !u!1 &3426195118542202266
 GameObject:
   m_ObjectHideFlags: 0
