@@ -124,7 +124,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _deformStrength: 0.1
-    - _glitchStrength: 0
+    - _glitchStrength: 0.70883423
     - _noiseScale: 500
     - _noiseStrength: 0.5
     - _scrollSpeed: 0.1

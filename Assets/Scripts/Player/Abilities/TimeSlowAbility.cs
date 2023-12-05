@@ -31,6 +31,7 @@ public class TimeSlowAbility : Ability{
         OnAbilityStart!.Invoke(abilityDuration);
         yield return new WaitForSecondsRealtime(abilityDuration);
         OnAbilityEnd!.Invoke(cooldown);
+        Debug.Log("I want to die");
         StartResetCooldown();
 
         Time.timeScale = 1;
