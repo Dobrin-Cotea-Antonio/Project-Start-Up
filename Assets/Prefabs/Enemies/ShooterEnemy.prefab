@@ -863,11 +863,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd33bfb44e87fba48930ebea4a0e58c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicMultiplier: 2
   animator: {fileID: 7474777292874467696}
   speed: 5
   canLoseAgro: 0
-  chaseRange: 15
-  attackRange: 7
+  chaseRange: 24
+  attackRange: 14
   attackCooldown: 0.6
   bulletPrefab: {fileID: 1166972865120561487, guid: 24d133a59724c364885b4b28550fcf1b,
     type: 3}

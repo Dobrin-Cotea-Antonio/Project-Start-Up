@@ -69,9 +69,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2859d477e9c9d43bba27b0562f7fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicMultiplier: 2
+  animator: {fileID: 6333888547365717946}
   speed: 7
   canLoseAgro: 0
-  chaseRange: 16
+  chaseRange: 20
   attackRange: 3.5
   attackCooldown: 100
   hp: {fileID: 4024330955479752224}
@@ -82,7 +84,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   bombFuse: 1
-  animator: {fileID: 6333888547365717946}
 --- !u!1 &1831826373832345651
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +694,7 @@ MonoBehaviour:
   hpImageBar: {fileID: 2968429914989522238}
   text: {fileID: 4108975373279537571}
   hpComponent: {fileID: 4024330955479752224}
+  slideBar: 0
   dissapearAfterTime: 1
   timeToDissapear: 3
 --- !u!114 &3658097134455448021
