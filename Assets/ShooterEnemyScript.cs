@@ -57,7 +57,7 @@ public class ShooterEnemyScript : EnemyAI{
 
         float randomAngle = Random.Range(-aimSpread, aimSpread);
         Debug.Log(randomAngle);
-        bullet1.transform.forward = Quaternion.Euler(0, 90 + randomAngle, 0) * shootPosition.forward;
+        bullet1.transform.forward = Quaternion.Euler(0, 180 + randomAngle, 0) * shootPosition.forward;
 
         Vector3 dir = (targetTransformAttack.position - shootPosition.position).normalized;
 

@@ -14,10 +14,10 @@ public class OverdriveAbility : Ability{
 
     protected override void Awake(){
         base.Awake();
-        GameManager.gameManager.playerHp = hp;
     }
 
     private void Start(){
+        GameManager.gameManager.playerHp = hp;
         data = GetComponent<PlayerStatsData>();
     }
 

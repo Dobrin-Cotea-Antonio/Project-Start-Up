@@ -8103,6 +8103,9 @@ MonoBehaviour:
   spreadAim: 0
   shotCooldown: 0.3
   aimSpeedDecrease: -50
+  damageBullet: 25
+  rangeBullet: 100
+  speedBullet: 75
 --- !u!114 &5203415281009972408
 MonoBehaviour:
   m_ObjectHideFlags: 0
