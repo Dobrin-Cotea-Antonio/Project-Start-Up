@@ -59,7 +59,7 @@ public class EnemyAI : MonoBehaviourWithPause {
         }
 
         chaseDistanceMultiplier = 1 + Mathf.Min(MusicHandler.musicHandler._musicTransitionProgress, 1 )* (musicMultiplier);
-        Debug.Log(chaseDistanceMultiplier);
+        //Debug.Log(chaseDistanceMultiplier);
         
         chaseRange = baseChaseRange * chaseDistanceMultiplier;
 

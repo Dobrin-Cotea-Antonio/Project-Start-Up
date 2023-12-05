@@ -19,6 +19,9 @@ public class Aim : MonoBehaviourWithPause {
     [SerializeField] float shotCooldown;
 
     [SerializeField] float aimSpeedDecrease;//in percentage
+    [SerializeField] float damageBullet;
+    [SerializeField] float rangeBullet;
+    [SerializeField] float speedBullet;
 
     int weaponToFire = 0;
 
@@ -203,9 +206,9 @@ public class Aim : MonoBehaviourWithPause {
         GameObject b1 = Instantiate(bulletPrefab, shootPositions[weaponToFire].position, Quaternion.identity);
 
         Bullet bullet1 = b1.GetComponent<Bullet>();
-        bullet1.speed = 60;
-        bullet1.range = 50;
-        bullet1.damage = 10;
+        bullet1.speed = speedBullet;
+        bullet1.range = rangeBullet;
+        bullet1.damage = damageBullet;
 
         float randomAngle = Random.Range(-pSpread, pSpread);
         bullet1.transform.forward = Quaternion.Euler(0, 90 + randomAngle, 0) * shootPositions[weaponToFire].forward;

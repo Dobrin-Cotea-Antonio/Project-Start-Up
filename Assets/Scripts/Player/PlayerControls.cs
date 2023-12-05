@@ -22,6 +22,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     [SerializeField] float interactionRange;
 
     [Header("Dash")]
+    [SerializeField] GameObject dashPrefab;
     [SerializeField] float dashRange;
     [SerializeField] float dashDuration;//in seconds
     [SerializeField] float dashCooldown;//in seconds
@@ -169,6 +170,8 @@ public class PlayerControls : MonoBehaviourWithPause {
     }
 
     IEnumerator Dash(Vector3 pDirection) {
+        Instantiate(dashPrefab,refPoint.position-refPoint.rotation * new Vector3(0,0.5f,0.35f), refPoint.rotation, refPoint);
+
         float speed = dashRange * (1 / dashDuration)*data.dashSpeedMultiplier;
 
         rb.AddForce(speed*pDirection, ForceMode.VelocityChange);
