@@ -15,23 +15,39 @@ public class ShooterEnemyScript : EnemyAI{
     [SerializeField] float bulletRange;
     [SerializeField] float bulletDamage;
 
+    
+
     protected override void Start(){
         base.Start();
         canLeaveAttackState = true;
+        lastAttackTime = float.MaxValue;
+        
+        //targetTransform = GameManager.gameManager.player.GetComponent<PlayerControls>().GetRefPoint();
     }
 
 
-    protected override void Attack(){
+    protected override void AnimationStateMachine(){
+        switch (state){
+            case EnemyStates.Idle:
 
-        float angle = Vector3.Angle((shootPosition.position - targetTransform.position).normalized, transform.forward);
-        //Debug.Log(angle);
+                break;
+            case EnemyStates.Chase:
+                PlayChaseAnimation();
+                break;
+            case EnemyStates.Attack:
+                PlayAttackAnimation();
+                break;
 
-        if (!(angle>15||angle<165)) { 
-            return;
         }
+    }
 
+    public void Shoot(){
 
-        lastAttackTime = Time.time;
+        //float angle = Vector3.Angle((shootPosition.position - targetTransform.position).normalized, transform.forward);
+        
+        //Debug.Log(targetTransformMove);
+
+        lastAttackTime = float.MaxValue;
         GameObject b1 = Instantiate(bulletPrefab, shootPosition.position, Quaternion.identity);
 
         Bullet bullet1 = b1.GetComponent<Bullet>();
@@ -43,12 +59,26 @@ public class ShooterEnemyScript : EnemyAI{
         Debug.Log(randomAngle);
         bullet1.transform.forward = Quaternion.Euler(0, 90 + randomAngle, 0) * shootPosition.forward;
 
-        Vector3 dir = (targetTransform.position - shootPosition.position).normalized;
+        Vector3 dir = (targetTransformAttack.position - shootPosition.position).normalized;
 
         dir = Quaternion.Euler(0,randomAngle,0) * dir;
 
         bullet1.AddSpeed(dir);
 
+    }
+    
+    
+
+    protected override void PlayAttackAnimation(){
+        animator.SetBool("canShoot", true);
+        animator.SetBool("canWalk", false);
+    }
+
+    protected override void PlayChaseAnimation()
+    {
+        animator.SetBool("canWalk", true);
+        animator.SetBool("raiseWeapon",true);
+        animator.SetBool("canShoot", false);
     }
 
 

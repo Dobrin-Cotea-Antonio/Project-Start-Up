@@ -17,7 +17,7 @@ public class Explosion : MonoBehaviourWithPause{
     }
 
     void SpawnExplosion() {
-
+        MusicHandler.musicHandler.AddMusicIntensity(MusicHandler.musicHandler._explosionIntensity);
         Vector3 position;
         RaycastHit hit;
 

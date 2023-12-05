@@ -18,9 +18,9 @@ AvatarMask:
   - m_Path: Armature/IK/TargetL
     m_Weight: 0
   - m_Path: Armature/LeftArm
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/LeftArm/TargetArmL
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/mixamorig:Hips
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:LeftUpLeg
@@ -56,7 +56,7 @@ AvatarMask:
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
     m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand
@@ -94,7 +94,7 @@ AvatarMask:
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand/Pistol_02
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/shouldres_armor.001
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Neck.001
@@ -104,7 +104,7 @@ AvatarMask:
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm
     m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand
@@ -142,15 +142,15 @@ AvatarMask:
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/Pistol_01
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/shouldres_armor
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/mixamorig:RightLeg.001
     m_Weight: 0
   - m_Path: Armature/mixamorig:RightLeg.001/TargetR
     m_Weight: 0
   - m_Path: Armature/RightArm
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/RightArm/TargetArmR
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Belly.001
     m_Weight: 0
   - m_Path: Biceps.001
@@ -168,7 +168,7 @@ AvatarMask:
   - m_Path: Foot_Joint.001
     m_Weight: 0
   - m_Path: Forearms.001
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Hand.001
     m_Weight: 0
   - m_Path: Hips.002
@@ -190,7 +190,7 @@ AvatarMask:
   - m_Path: Index_Finger_Joint.005
     m_Weight: 0
   - m_Path: Joint_Forearms.001
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Leg_Bones
     m_Weight: 0
   - m_Path: Leg_Joint.001

@@ -9,6 +9,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     Rigidbody rb;
     InputManager input;
     [Header("Data")]
+    [SerializeField] HpComponent hp;
     [SerializeField] Transform refPoint;
     [SerializeField] Camera cameraMain;
     [SerializeField] GameObject interactionSphere;
@@ -26,7 +27,8 @@ public class PlayerControls : MonoBehaviourWithPause {
     [SerializeField] float dashCooldown;//in seconds
     [SerializeField] int dashChargesMax;
 
-    int availableDashCharges;
+    public int availableDashCharges { get; private set; }
+    public int _dashChargesMax { get { return dashChargesMax; } private set { dashChargesMax = value; } }
 
     PlayerStatsData data;
     Vector3 cameraOffSet;
@@ -36,6 +38,8 @@ public class PlayerControls : MonoBehaviourWithPause {
     public Vector3 forward { get; private set; }
 
     Vector3 walkDirection = Vector3.zero;
+
+
 
     //fix state machine bcz its shit
     public enum MovementStates {
@@ -181,12 +185,14 @@ public class PlayerControls : MonoBehaviourWithPause {
             movementState = MovementStates.Dash;
             StartCoroutine(Dash(pDirection));
             StartCoroutine(RecoverDashCharge());
+            hp.enabled = false;
             return true;
         }
         return false;
     }
 
     void StopDash() {
+        hp.enabled = true;
         movementState = MovementStates.Idle;
         rb.velocity = new Vector3(0,rb.velocity.y,0);
     }
@@ -272,5 +278,9 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     public GameObject GetModelHolder() {
         return modelHolder;
+    }
+
+    public Transform GetRefPoint() {
+        return refPoint;
     }
 }

@@ -10,8 +10,10 @@ public class HealthBarComponent : MonoBehaviourWithPause{
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] HpComponent hpComponent;
 
+    [SerializeField] bool slideBar;
     [SerializeField] bool dissapearAfterTime;
     [SerializeField] float timeToDissapear;
+
 
     float lastActiveTime=-1000000;
     bool enableCanvas = false;
@@ -53,7 +55,14 @@ public class HealthBarComponent : MonoBehaviourWithPause{
         float hpPercentage = pCurrentHp / pMaxHp;
 
         text.text = string.Format("{0}% HP",System.Math.Round(hpPercentage * 100,2));
-        hpImageBar.transform.localScale = new Vector2(hpPercentage, hpImageBar.transform.localScale.y);
+        if (!slideBar)
+            hpImageBar.transform.localScale = new Vector2(hpPercentage, hpImageBar.transform.localScale.y);
+        else {
+            Debug.Log(hpImageBar.rectTransform.localPosition+" "+hpPercentage);
+            hpImageBar.rectTransform.localPosition = new Vector3(-(100-hpPercentage*100)/100 * hpImageBar.rectTransform.sizeDelta.x, hpImageBar.rectTransform.localPosition.y, hpImageBar.rectTransform.localPosition.z);
+            Debug.Log(hpImageBar.rectTransform.localPosition);
+        }
+
     }
 
 }

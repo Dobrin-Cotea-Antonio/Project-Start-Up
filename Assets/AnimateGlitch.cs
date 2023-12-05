@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimateGlitch: MonoBehaviour{
 
     [Header("Data")]
+    [SerializeField] Transform refPoint;
     [SerializeField] Material material;
     [SerializeField] float maxGlitch;
     [SerializeField] float minGlitch;
@@ -42,5 +43,9 @@ public class AnimateGlitch: MonoBehaviour{
 
         }
         
+    }
+
+    public Transform GetRefPoint(){
+        return refPoint;
     }
 }

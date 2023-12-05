@@ -64,6 +64,8 @@ public class Aim : MonoBehaviourWithPause {
 
             bulletAimPos = cameraRayHit.point;
 
+            //Debug.Log(cameraRayHit.collider.gameObject);
+
             aimPosition = new Vector3(cameraRayHit.point.x, shootPositions[weaponToFire].transform.position.y, cameraRayHit.point.z);
             Vector3 direction = cameraRayHit.point - modelHolder.transform.position;
             direction.y = 0;
@@ -84,8 +86,10 @@ public class Aim : MonoBehaviourWithPause {
         
         if (Physics.Raycast(cameraRay, out cameraRayHit, Mathf.Infinity, maskGround)){
 
+
+
             //Debug.DrawLine(cameraRayHit.point+new Vector3(0,10,0),cameraRayHit.point,Color.red,0.1f);
-            
+
             aimPosition = new Vector3(cameraRayHit.point.x, cameraRayHit.point.y, cameraRayHit.point.z);
             Vector3 direction = cameraRayHit.point - modelHolder.transform.position;
             direction.y = 0;

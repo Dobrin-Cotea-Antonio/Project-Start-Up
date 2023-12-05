@@ -8,10 +8,17 @@ public class EnemyAI : MonoBehaviourWithPause {
 
     [Header("Helper Stuff")]
     protected NavMeshAgent agent;
-    protected Transform targetTransform;
+    protected Transform targetTransformMove;
+    protected Transform targetTransformAttack;
     protected float distanceToPlayer;
     protected float lastAttackTime = -100000;
     protected bool canLeaveAttackState = true;
+    protected float chaseDistanceMultiplier;
+    protected float baseChaseRange;
+
+    [Header("Animator")]
+    [SerializeField] float musicMultiplier=2;
+    [SerializeField] protected Animator animator;
 
     [Header("Stats")]
     [SerializeField] float speed;
@@ -23,6 +30,7 @@ public class EnemyAI : MonoBehaviourWithPause {
     [Header("Attack")]
     [SerializeField] float attackRange;
     [SerializeField] float attackCooldown;
+    
 
     public enum EnemyStates {
         Idle,
@@ -40,18 +48,29 @@ public class EnemyAI : MonoBehaviourWithPause {
 
         agent.speed = speed;
 
+        baseChaseRange = chaseRange;
+
     }
 
     protected override void UpdateWithPause(){
-        if (targetTransform == null) {
-            targetTransform = GameManager.gameManager.player.transform;
+        if (targetTransformMove == null) {
+            targetTransformMove = GameManager.gameManager.player.transform;
+            targetTransformAttack = GameManager.gameManager.player.GetComponent<PlayerControls>().GetRefPoint();
         }
 
-        distanceToPlayer = (targetTransform.position - transform.position).magnitude;
+        chaseDistanceMultiplier = 1 + Mathf.Min(MusicHandler.musicHandler._musicTransitionProgress, 1 )* (musicMultiplier);
+        Debug.Log(chaseDistanceMultiplier);
+        
+        chaseRange = baseChaseRange * chaseDistanceMultiplier;
+
+        distanceToPlayer = (targetTransformMove.position - transform.position).magnitude;
 
         StateMachine();
 
+        AnimationStateMachine();
     }
+
+    protected virtual void AnimationStateMachine() { }
 
     void StateMachine() {
         switch (state) {
@@ -70,8 +89,6 @@ public class EnemyAI : MonoBehaviourWithPause {
 
     void IdleState() {
 
-        PlayIdleAnimation();
-
         if (distanceToPlayer <= chaseRange) {
             state = EnemyStates.Chase;
             return;
@@ -80,8 +97,6 @@ public class EnemyAI : MonoBehaviourWithPause {
     }
 
     void ChaseState() {
-
-        PlayChaseAnimation();
 
         if (canLoseAgro && distanceToPlayer < chaseRange) {
             state = EnemyStates.Idle;
@@ -93,30 +108,21 @@ public class EnemyAI : MonoBehaviourWithPause {
             return;
         }
 
-        agent.SetDestination(targetTransform.position);
+        agent.SetDestination(targetTransformMove.position);
 
     }
 
     void AttackState() {
 
         agent.SetDestination(transform.position);
-        transform.LookAt(targetTransform);
+        transform.LookAt(targetTransformMove);
 
         if (canLeaveAttackState && distanceToPlayer > attackRange) {
             state = EnemyStates.Chase;
             return;
         }
 
-        if (agent.velocity.magnitude < 0.01)
-        {
-            PlayIdleAnimation();
-        }
-        else {
-            PlayChaseAnimation();
-        }
-
         if (Time.time - lastAttackTime > attackCooldown) {
-            PlayAttackAnimation();
             Attack();
         }
         
@@ -131,6 +137,7 @@ public class EnemyAI : MonoBehaviourWithPause {
     protected virtual void Attack() {}
 
     private void OnDestroy(){
+        MusicHandler.musicHandler.AddMusicIntensity(MusicHandler.musicHandler._enemyDeathIntensity);
         OnEnemyDeath!.Invoke(this);
     }
 
@@ -142,5 +149,10 @@ public class EnemyAI : MonoBehaviourWithPause {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chaseRange);
 
+    }
+
+    public void SetTarget(Transform pWalkTransform,Transform pAttackTransform) {
+        targetTransformMove = pWalkTransform;
+        targetTransformAttack = pAttackTransform;
     }
 }

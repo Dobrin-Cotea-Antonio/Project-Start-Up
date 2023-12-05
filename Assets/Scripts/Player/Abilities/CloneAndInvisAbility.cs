@@ -10,6 +10,9 @@ public class CloneAndInvisAbility : Ability{
     [SerializeField] Transform modelRotation;
     [SerializeField] float cloneTransparency;
 
+    private void Start(){
+    }
+
     public override void UseAbility(){
         if (!isOnCooldown)
             StartCoroutine(CreateClone());
@@ -22,6 +25,10 @@ public class CloneAndInvisAbility : Ability{
         GameObject clone = Instantiate(clonePrefab, GetComponent<PlayerControls>().GetModelHolder().transform.position, modelRotation.rotation);
         transparencyScript.SetTransparency(cloneTransparency);
         OnAbilityStart!.Invoke(abilityDuration);
+        AnimateGlitch glitch = clone.GetComponent<AnimateGlitch>();
+
+
+        EnemyManager.enemyManager.SetEnemyTarget(glitch.transform, glitch.GetRefPoint(), false);
         yield return new WaitForSecondsRealtime(abilityDuration);
         transparencyScript.SetTransparency(1f);
         OnAbilityEnd!.Invoke(cooldown);

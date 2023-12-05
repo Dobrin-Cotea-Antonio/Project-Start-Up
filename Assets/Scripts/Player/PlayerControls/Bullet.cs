@@ -16,6 +16,10 @@ public class Bullet : MonoBehaviourWithPause{
         startPosition = transform.position;
     }
 
+    private void Start(){
+        MusicHandler.musicHandler.AddMusicIntensity(MusicHandler.musicHandler._gunShotIntensity);
+    }
+
     protected override void UpdateWithPause(){
         if ((transform.position - startPosition).magnitude > range) {
             Destroy(this.gameObject);
@@ -32,19 +36,6 @@ public class Bullet : MonoBehaviourWithPause{
             hp.TakeDamage(damage);
         }
 
-        //Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        //PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
-        //if (enemy != null) {
-        //    if (enemy.tag!="Robot")
-        //        HitMarkerBehavior.hitEnemy = true;
-        //    enemy.TakeDamage(damage);
-        //}
-        //if (tree != null) {
-        //    tree.TakeDamage(collision.contacts[0].normal);
-        //}
-        //if (player != null){
-        //    player.TakeDamage(damage);
-        //}
         Destroy(gameObject);
     }
 

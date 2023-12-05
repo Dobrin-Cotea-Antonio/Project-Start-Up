@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerUIManager : MonoBehaviourWithPause{
 
@@ -18,14 +19,25 @@ public class PlayerUIManager : MonoBehaviourWithPause{
     [SerializeField] TextMeshProUGUI ability1Text;
     [SerializeField] TextMeshProUGUI ability2Text;
 
+    [Header("DashUI")]
+    [SerializeField] GameObject[] dashSlots;
+    [SerializeField] Sprite dashChargeFull;
+    [SerializeField] Sprite dashChargeEmpty;
+
+    List<Image> dashImages = new List<Image>();
 
     Controls controls;
     GameManager gameManager;
+    PlayerControls player;
 
     private void Start(){
         controls = Controls.controls;
         gameManager = GameManager.gameManager;
         gameManager.playerUIManager = this;
+
+        for (int i = 0; i < dashSlots.Length; i++)
+            dashImages.Add(dashSlots[i].GetComponent<Image>());
+            //dashImages[i] = dashSlots[i].GetComponent<Image>();
     }
 
     protected override void UpdateWithPause(){
@@ -33,6 +45,9 @@ public class PlayerUIManager : MonoBehaviourWithPause{
         ability2Input.text = string.Format("[{0}]", controls.keyList["interact2"]);
         interactionInput.text = string.Format("[{0}]",controls.keyList["interact"]);
         levelCash.text = string.Format("{0}$",gameManager.levelCash);
+
+        UpdateDashCharges();
+
     }
 
     public void EnableAbilityPickUpPrompt(bool pState) {
@@ -60,5 +75,17 @@ public class PlayerUIManager : MonoBehaviourWithPause{
         ability2Text.text = (text + " 2");
     }
 
+    void UpdateDashCharges() { 
+        if (player == null)
+            player = GameManager.gameManager.player.GetComponent<PlayerControls>();
+
+        for (int i = 0; i < player._dashChargesMax; i++) {
+            dashSlots[i].SetActive(true);
+            if (i < player.availableDashCharges)
+                dashImages[i].sprite = dashChargeFull;
+            else
+                dashImages[i].sprite = dashChargeEmpty;
+        }
+    }
 
 }

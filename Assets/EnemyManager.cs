@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviourWithPause {
 
     public static EnemyManager enemyManager { get; private set; }
 
-
+    Transform enemyTarget;
 
     List<EnemyAI> enemies;
 
@@ -33,5 +33,11 @@ public class EnemyManager : MonoBehaviourWithPause {
 
     void DecreaseEnemyCount(EnemyAI pEnemy) {//increase money as well
         enemies.Remove(pEnemy);
+    }
+
+    public void SetEnemyTarget(Transform pWalkTarget, Transform pAttackTarget, bool pPlayer) {
+        foreach (EnemyAI enemy in enemies) {
+            enemy.SetTarget(pWalkTarget, pAttackTarget);
+        }
     }
 }

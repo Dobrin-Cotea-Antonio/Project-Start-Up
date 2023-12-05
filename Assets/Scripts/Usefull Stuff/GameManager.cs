@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviourWithPause {
     public HpComponent playerHp { get; set; }
     public PlayerUIManager playerUIManager { get ; set; }
 
+    public MusicHandler musicHandler { get; set; }
+
     public enum RewardTypes { 
         Hp,
         Shop,

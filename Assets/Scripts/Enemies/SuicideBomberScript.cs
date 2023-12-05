@@ -12,19 +12,15 @@ public class SuicideBomberScript : EnemyAI{
     [SerializeField] LayerMask mask;
     [SerializeField] float bombFuse;
 
-    [Header("Animator")]
-    [SerializeField] Animator animator;
-
     protected override void Start(){
         base.Start();
 
-        //hp = GetComponent<HpComponent>();
         hp.OnDeath += SpawnExplosion;
         canLeaveAttackState = false;
     }
 
     public void SpawnExplosion(){
-
+        MusicHandler.musicHandler.AddMusicIntensity(MusicHandler.musicHandler._explosionIntensity);
         Vector3 position;
         RaycastHit hit;
 
@@ -42,32 +38,27 @@ public class SuicideBomberScript : EnemyAI{
 
     }
 
-    protected override void Attack(){
-        //StartCoroutine(StartBombTimer());
-        //lastAttackTime = Time.time;
-    }
-
-    IEnumerator StartBombTimer() {
-
-        int frames = 120;
-        float frameDuration = bombFuse / frames;
-
-        for (int i = 0; i < frames; i++) {
-            yield return new WaitForSeconds(frameDuration);
-        }
-
-        //yield return new WaitForSeconds(bombFuse);
-        SpawnExplosion();
-        //Destroy(transform.root.gameObject);
-
-    }
-
     protected override void PlayAttackAnimation(){
         animator.SetBool("Rolling", false);
     }
 
     protected override void PlayChaseAnimation(){
         animator.SetBool("Rolling", true);
+    }
+
+    protected override void AnimationStateMachine(){
+        switch (state) {
+            case EnemyStates.Idle:
+                
+                break;
+            case EnemyStates.Chase:
+                PlayChaseAnimation();
+                break;
+            case EnemyStates.Attack:
+                PlayAttackAnimation();
+                break;
+        
+        }
     }
 
 }
