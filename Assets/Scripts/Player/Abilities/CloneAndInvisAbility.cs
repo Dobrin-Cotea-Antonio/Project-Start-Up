@@ -11,6 +11,7 @@ public class CloneAndInvisAbility : Ability{
     [SerializeField] float cloneTransparency;
 
     private void Start(){
+        //transparencyScript = GetComponent<ChangeTransparency>();
     }
 
     public override void UseAbility(){
@@ -23,14 +24,14 @@ public class CloneAndInvisAbility : Ability{
         isOnCooldown = true;
         
         GameObject clone = Instantiate(clonePrefab, GetComponent<PlayerControls>().GetModelHolder().transform.position, modelRotation.rotation);
-        transparencyScript.SetTransparency(cloneTransparency);
+        transparencyScript.SetTransparency();
         OnAbilityStart!.Invoke(abilityDuration);
         AnimateGlitch glitch = clone.GetComponent<AnimateGlitch>();
 
 
         EnemyManager.enemyManager.SetEnemyTarget(glitch.transform, glitch.GetRefPoint(), false);
         yield return new WaitForSecondsRealtime(abilityDuration);
-        transparencyScript.SetTransparency(1f);
+        transparencyScript.SetTransparency();
         OnAbilityEnd!.Invoke(cooldown);
         StartResetCooldown();
 
