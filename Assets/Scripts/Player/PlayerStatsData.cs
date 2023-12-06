@@ -8,6 +8,7 @@ public class PlayerStatsData : MonoBehaviourWithPause{
     public float shootSpeedMultiplier { get; private set; }
     public float dashSpeedMultiplier { get; private set; }
     public float bulletSpeedMultiplier { get; private set; }
+    public float abilityRechargeSpeedMultiplier { get; private set; }
 
     //List<float> movementModifiers=new List<float>();
     Dictionary<string,float> movementSpeedModifiers=new Dictionary<string, float>();
@@ -18,11 +19,14 @@ public class PlayerStatsData : MonoBehaviourWithPause{
 
     Dictionary<string, float> bulletSpeedModifiers = new Dictionary<string, float>();
 
+    Dictionary<string, float> abilityRechargeSpeedModifiers = new Dictionary<string, float>();
+
     private void Awake(){
         movementSpeedMultiplier = 1.0f;
         shootSpeedMultiplier = 1.0f;
         dashSpeedMultiplier = 1.0f;
         bulletSpeedMultiplier = 1.0f;
+        abilityRechargeSpeedMultiplier = 1.0f;
     }
 
     public void AddMovementModifier(string pString,float pModif) {//pModif is a percentage
@@ -67,7 +71,16 @@ public class PlayerStatsData : MonoBehaviourWithPause{
 
         bulletSpeedMultiplier = bulletSpeedMultiplier + pModif / 100;
 
+    }
 
+    public void AddAbilityRechargeSpeedModifier(string pString, float pModif) {
+        if (abilityRechargeSpeedModifiers.ContainsKey(pString)) {
+            abilityRechargeSpeedMultiplier = abilityRechargeSpeedMultiplier + abilityRechargeSpeedModifiers[pString] / 100;
+        }
+
+        abilityRechargeSpeedModifiers[pString] = pModif;
+
+        abilityRechargeSpeedMultiplier = abilityRechargeSpeedMultiplier - pModif / 100;
     }
 
 }

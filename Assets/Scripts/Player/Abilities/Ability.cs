@@ -10,6 +10,7 @@ abstract public class Ability : MonoBehaviourWithPause {
     [SerializeField] Sprite image;
     [SerializeField] protected float abilityDuration;
     [SerializeField] protected float cooldown;
+    protected float cooldownBase;
 
     protected bool isOnCooldown = false;
 
@@ -20,9 +21,20 @@ abstract public class Ability : MonoBehaviourWithPause {
     public Action<float> OnAbilityEnd;
 
     protected Coroutine cooldownReset;
+    protected PlayerStatsData data;
 
     protected virtual void Awake(){
         _image = image;
+        cooldownBase = cooldown;
+        data = GetComponent<PlayerStatsData>();
+
+        Debug.Log(data);
+
+        //Debug.Log(cooldownBase);
+    }
+
+    protected override void UpdateWithPause(){
+        cooldown = cooldownBase * data.abilityRechargeSpeedMultiplier;
     }
 
     public abstract void UseAbility();

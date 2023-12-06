@@ -11,8 +11,12 @@ public class GameManager : MonoBehaviourWithPause {
     public AbilityManager abilityManager { get; set; }
     public HpComponent playerHp { get; set; }
     public PlayerUIManager playerUIManager { get ; set; }
-
     public MusicHandler musicHandler { get; set; }
+
+    public int ability1 = -1;
+    public int ability2 = -1;
+
+    public bool abilitySet = false;
 
     public enum RewardTypes { 
         Hp,
@@ -20,7 +24,6 @@ public class GameManager : MonoBehaviourWithPause {
         Limb,
         Ability,
         HubCurrency,
-        Grenades,
         None
     }
 
@@ -31,21 +34,36 @@ public class GameManager : MonoBehaviourWithPause {
     private void Awake(){
         if (gameManager != null) {
             gameManager.currentRoomReward = nextRoomReward;
-            gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 6));
-            Debug.Log(gameManager.nextRoomReward);
+            gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 5));
+            gameManager.abilitySet = false;
+            //Debug.Log(gameManager.nextRoomReward);
             Destroy(gameObject);
         }
         else{
             DontDestroyOnLoad(gameObject);
+            levelCash = 1000;
             gameManager = this;
             gameManager.currentRoomReward = RewardTypes.Ability;
-            gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 6));
+            gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 5));
 
 
         }
     }
 
-    private void Start(){
-        levelCash = 1000;
+    private void Update(){
+
+        if (!abilitySet){
+            if (ability1 != -1)
+                abilityManager.AddAbility(ability1, 1);
+            if (ability2 != -1)
+                abilityManager.AddAbility(ability2, 2);
+
+            abilitySet = true;
+        } else {
+            ability1 = abilityManager._activeAbilityIndex1;
+            ability2 = abilityManager._activeAbilityIndex2;
+        }
+
     }
+
 }

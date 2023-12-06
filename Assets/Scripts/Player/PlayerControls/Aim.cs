@@ -14,6 +14,7 @@ public class Aim : MonoBehaviourWithPause {
     [SerializeField] Animator animator;
 
     [Header("Shooting Data")]
+    [SerializeField] GameObject muzzleFlashPrefab;
     [SerializeField] float spreadHipFire;//spread in degrees (final spread angle/2)
     [SerializeField] float spreadAim;
     [SerializeField] float shotCooldown;
@@ -86,22 +87,34 @@ public class Aim : MonoBehaviourWithPause {
         }
 
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Plane groundPlane = new Plane(Vector3.up, refPoint.position);
+        float rayLength;
         
-        if (Physics.Raycast(cameraRay, out cameraRayHit, Mathf.Infinity, maskGround)){
+        if (groundPlane.Raycast(cameraRay, out rayLength)){
 
-
+            //Physics.Raycast(cameraRay, out cameraRayHit, Mathf.Infinity, maskGround)
 
             //Debug.DrawLine(cameraRayHit.point+new Vector3(0,10,0),cameraRayHit.point,Color.red,0.1f);
 
-            aimPosition = new Vector3(cameraRayHit.point.x, cameraRayHit.point.y, cameraRayHit.point.z);
-            Vector3 direction = cameraRayHit.point - modelHolder.transform.position;
+            //aimPosition = new Vector3(cameraRayHit.point.x, cameraRayHit.point.y, cameraRayHit.point.z);
+            //Vector3 direction = cameraRayHit.point - modelHolder.transform.position;
+            ////direction.y = 0;
+            //direction.Normalize();
+
+            //modelHolder.transform.forward = direction;
+            //refPoint.transform.forward = direction;
+
+            aimPosition = cameraRay.GetPoint(rayLength);
+
+            Debug.DrawLine(cameraRay.origin, aimPosition);
+
+            Vector3 direction = Quaternion.Euler(0,-4,0)*(aimPosition - modelHolder.transform.position);
             direction.y = 0;
             direction.Normalize();
 
             modelHolder.transform.forward = direction;
             refPoint.transform.forward = direction;
-            
-
         }
 
     }
@@ -133,6 +146,7 @@ public class Aim : MonoBehaviourWithPause {
 
             data.AddMovementModifier("AimBonus", 0);
             animator.SetInteger("gunState", 2);
+            //animator.SetBool("hipFire", true);
             animator.SetBool("isAiming", false);
 
             player.attackState = PlayerControls.AttackStates.HipFire;
@@ -190,9 +204,6 @@ public class Aim : MonoBehaviourWithPause {
 
     public void ShootBullet() {
 
-        if (Time.time - lastShotTime < 0.1f)
-            return;
-
         float pSpread = 0f;
 
         if (player.attackState == PlayerControls.AttackStates.AimAndShoot)
@@ -204,6 +215,7 @@ public class Aim : MonoBehaviourWithPause {
 
         lastShotTime = Time.time;
         GameObject b1 = Instantiate(bulletPrefab, shootPositions[weaponToFire].position, Quaternion.identity);
+        Instantiate(muzzleFlashPrefab, shootPositions[weaponToFire].position, refPoint.rotation, shootPositions[weaponToFire]);
 
         Bullet bullet1 = b1.GetComponent<Bullet>();
         bullet1.speed = speedBullet;
@@ -222,6 +234,7 @@ public class Aim : MonoBehaviourWithPause {
             dir = shootPositions[weaponToFire].forward;
             dir.Normalize();
         }
+
 
         bullet1.AddSpeed(dir*data.bulletSpeedMultiplier);
 

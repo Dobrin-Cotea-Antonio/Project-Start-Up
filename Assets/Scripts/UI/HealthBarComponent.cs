@@ -58,9 +58,9 @@ public class HealthBarComponent : MonoBehaviourWithPause{
         if (!slideBar)
             hpImageBar.transform.localScale = new Vector2(hpPercentage, hpImageBar.transform.localScale.y);
         else {
-            Debug.Log(hpImageBar.rectTransform.localPosition+" "+hpPercentage);
+            //Debug.Log(hpImageBar.rectTransform.localPosition+" "+hpPercentage);
             hpImageBar.rectTransform.localPosition = new Vector3(-(100-hpPercentage*100)/100 * hpImageBar.rectTransform.sizeDelta.x, hpImageBar.rectTransform.localPosition.y, hpImageBar.rectTransform.localPosition.z);
-            Debug.Log(hpImageBar.rectTransform.localPosition);
+            //Debug.Log(hpImageBar.rectTransform.localPosition);
         }
 
     }

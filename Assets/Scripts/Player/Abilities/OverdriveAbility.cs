@@ -10,7 +10,7 @@ public class OverdriveAbility : Ability{
     [SerializeField] float hpRegenPerSec;
     [SerializeField] HpComponent hp;
 
-    PlayerStatsData data;
+    //PlayerStatsData data;
 
     protected override void Awake(){
         base.Awake();

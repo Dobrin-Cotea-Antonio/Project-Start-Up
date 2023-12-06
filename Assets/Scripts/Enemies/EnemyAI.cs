@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviourWithPause {
     [Header("Animator")]
     [SerializeField] float musicMultiplier=2;
     [SerializeField] protected Animator animator;
+    [SerializeField] protected HpComponent hp;
 
     [Header("Stats")]
     [SerializeField] float speed;
@@ -50,6 +51,13 @@ public class EnemyAI : MonoBehaviourWithPause {
 
         baseChaseRange = chaseRange;
 
+        hp.OnDamageTaken += ChangeStateToChase;
+
+    }
+
+    void ChangeStateToChase(float arg1,float arg2) {
+        if (state == EnemyStates.Idle)
+            state = EnemyStates.Chase;
     }
 
     protected override void UpdateWithPause(){

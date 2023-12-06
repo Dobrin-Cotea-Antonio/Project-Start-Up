@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PlayerControls : MonoBehaviourWithPause {
+public class PlayerControls : MonoBehaviourWithPause
+{
     // Start is called before the first frame update
 
     Rigidbody rb;
@@ -43,13 +44,15 @@ public class PlayerControls : MonoBehaviourWithPause {
 
 
     //fix state machine bcz its shit
-    public enum MovementStates {
+    public enum MovementStates
+    {
         Idle,
         Walk,
         Dash
     }
 
-    public enum AttackStates {
+    public enum AttackStates
+    {
         Idle,
         HipFire,//hip fire; will have more spread but keep normal running speed
         Aim,//decreased run speed but almost perfect accuracy
@@ -62,11 +65,13 @@ public class PlayerControls : MonoBehaviourWithPause {
     float animatorX;
     float animatorY;
 
-    private void Awake(){
-        
+    private void Awake()
+    {
+
     }
 
-    void Start() {
+    void Start()
+    {
         GameManager.gameManager.player = gameObject;
 
         right = Vector3.zero;
@@ -83,9 +88,11 @@ public class PlayerControls : MonoBehaviourWithPause {
         availableDashCharges = dashChargesMax;
     }
 
-    protected override void UpdateWithPause() {
+    protected override void UpdateWithPause()
+    {
 
-        if (right == Vector3.zero) {
+        if (right == Vector3.zero)
+        {
 
             Quaternion cameraRotation = cameraMain.transform.rotation;
             cameraMain.transform.rotation = Quaternion.Euler(0, cameraMain.transform.eulerAngles.y, 0);
@@ -97,8 +104,10 @@ public class PlayerControls : MonoBehaviourWithPause {
         StateMachineChooseState();
     }
 
-    void StateMachineExecution(){
-        switch (movementState){
+    void StateMachineExecution()
+    {
+        switch (movementState)
+        {
             case MovementStates.Idle:
                 break;
             case MovementStates.Walk:
@@ -111,11 +120,13 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     }
 
-    void StateMachineChooseState() {
+    void StateMachineChooseState()
+    {
         ChooseWalkAnimationState();
 
-        switch (movementState){
-            case MovementStates.Idle:   
+        switch (movementState)
+        {
+            case MovementStates.Idle:
                 IdleState();
                 break;
             case MovementStates.Walk:
@@ -127,16 +138,19 @@ public class PlayerControls : MonoBehaviourWithPause {
         }
     }
 
-    protected override void FixedUpdateWithPause() {
+    protected override void FixedUpdateWithPause()
+    {
         StateMachineExecution();
     }
 
-    void WalkState() {
+    void WalkState()
+    {
         Vector3 direction = right * input.moveDirection.x + forward * input.moveDirection.z;
 
         Vector3 force = direction * moveSpeed * data.movementSpeedMultiplier;
 
-        if (force.magnitude < 0.001) {
+        if (force.magnitude < 0.001)
+        {
             movementState = MovementStates.Idle;
             return;
         }
@@ -148,7 +162,8 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     }
 
-    void Walk(){
+    void Walk()
+    {
 
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
         Vector3 force = walkDirection * moveSpeed * data.movementSpeedMultiplier;
@@ -158,8 +173,10 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     }
 
-    void IdleState() {
-        if (input.moveDirection.magnitude != 0){
+    void IdleState()
+    {
+        if (input.moveDirection.magnitude != 0)
+        {
             movementState = MovementStates.Walk;
             return;
         }
@@ -169,20 +186,23 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     }
 
-    IEnumerator Dash(Vector3 pDirection) {
-        Instantiate(dashPrefab,refPoint.position-refPoint.rotation * new Vector3(0,0.5f,0.35f), refPoint.rotation, refPoint);
+    IEnumerator Dash(Vector3 pDirection)
+    {
+        Instantiate(dashPrefab, refPoint.position - refPoint.rotation * new Vector3(0, 0.5f, 0.35f), refPoint.rotation, refPoint);
 
-        float speed = dashRange * (1 / dashDuration)*data.dashSpeedMultiplier;
+        float speed = dashRange * (1 / dashDuration) * data.dashSpeedMultiplier;
 
-        rb.AddForce(speed*pDirection, ForceMode.VelocityChange);
+        rb.AddForce(speed * pDirection, ForceMode.VelocityChange);
 
         yield return new WaitForSecondsRealtime(dashDuration);
 
         StopDash();
     }
 
-    bool StartDash(Vector3 pDirection) {
-        if (input.dashInput && availableDashCharges > 0) {
+    bool StartDash(Vector3 pDirection)
+    {
+        if (input.dashInput && availableDashCharges > 0)
+        {
             SetModelDirection(pDirection);
             availableDashCharges = Mathf.Max(0, availableDashCharges - 1);
             movementState = MovementStates.Dash;
@@ -194,18 +214,21 @@ public class PlayerControls : MonoBehaviourWithPause {
         return false;
     }
 
-    void StopDash() {
+    void StopDash()
+    {
         hp.enabled = true;
         movementState = MovementStates.Idle;
-        rb.velocity = new Vector3(0,rb.velocity.y,0);
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
 
-    IEnumerator RecoverDashCharge() {
+    IEnumerator RecoverDashCharge()
+    {
         yield return new WaitForSecondsRealtime(dashCooldown);
-        availableDashCharges = Mathf.Min(availableDashCharges + 1,dashChargesMax);
+        availableDashCharges = Mathf.Min(availableDashCharges + 1, dashChargesMax);
     }
 
-    void SetModelDirection(Vector3 pDirection) {
+    void SetModelDirection(Vector3 pDirection)
+    {
         DOTween.defaultTimeScaleIndependent = true;
 
         if (attackState != AttackStates.Idle)
@@ -220,14 +243,16 @@ public class PlayerControls : MonoBehaviourWithPause {
 
         if (newForward == -modelHolder.transform.forward)
             StartCoroutine(TurnAround(t, newForward));
-        else{
+        else
+        {
             DOTween.To(() => modelHolder.transform.forward, x => modelHolder.transform.forward = x, newForward, t);
             DOTween.To(() => refPoint.forward, x => refPoint.forward = x, newForward, t);
         }
 
     }
 
-    void ChooseWalkAnimationState() {
+    void ChooseWalkAnimationState()
+    {
         float t = 0.15f;
 
         animator.SetFloat("X", animatorX);
@@ -242,7 +267,8 @@ public class PlayerControls : MonoBehaviourWithPause {
             return;
         }
 
-        if (rb.velocity.magnitude <= 0.01){
+        if (rb.velocity.magnitude <= 0.01)
+        {
             TweenAnimatorState(0, 0, t);
             return;
         }
@@ -256,7 +282,8 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     }
 
-    void TweenAnimatorState(float pX,float pY,float pTime) {
+    void TweenAnimatorState(float pX, float pY, float pTime)
+    {
 
         if (animatorX == pX && animatorY == pY)
             return;
@@ -265,25 +292,33 @@ public class PlayerControls : MonoBehaviourWithPause {
         DOTween.To(() => animatorY, y => animatorY = y, pY, pTime);
     }
 
-    IEnumerator TurnAround(float pTime,Vector3 pForward) {
+    IEnumerator TurnAround(float pTime, Vector3 pForward)
+    {
 
         Vector3 endPoint = -pForward;
         Vector3 midPoint = Vector3.Cross(Vector3.up, pForward);
 
-        DOTween.To(() => modelHolder.transform.forward, x => modelHolder.transform.forward = x, midPoint, pTime/2);
+        DOTween.To(() => modelHolder.transform.forward, x => modelHolder.transform.forward = x, midPoint, pTime / 2);
 
-        yield return new WaitForSecondsRealtime(pTime/2);
+        yield return new WaitForSecondsRealtime(pTime / 2);
 
         DOTween.To(() => modelHolder.transform.forward, x => modelHolder.transform.forward = x, endPoint, pTime / 2);
 
     }
 
 
-    public GameObject GetModelHolder() {
+    public GameObject GetModelHolder()
+    {
         return modelHolder;
     }
 
-    public Transform GetRefPoint() {
+    public Transform GetRefPoint()
+    {
         return refPoint;
+    }
+
+    public void AddMaxDashCharges(int pQuantity){
+        dashChargesMax += pQuantity;
+        availableDashCharges = Mathf.Max(0, availableDashCharges + pQuantity);
     }
 }

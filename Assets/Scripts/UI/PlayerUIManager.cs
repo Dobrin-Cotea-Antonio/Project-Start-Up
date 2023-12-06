@@ -86,6 +86,10 @@ public class PlayerUIManager : MonoBehaviourWithPause{
             else
                 dashImages[i].sprite = dashChargeEmpty;
         }
+
+        for (int i = player._dashChargesMax; i < 4; i++) {
+            dashSlots[i].SetActive(false);
+        }
     }
 
 }
