@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5952107252904239617}
   - component: {fileID: 8466438868146771659}
   - component: {fileID: 7115477312653848510}
-  m_Layer: 0
+  - component: {fileID: 5780062936966595237}
+  m_Layer: 12
   m_Name: PC3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,3 +98,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.019999996, z: 0.31725696}
   m_Center: {x: 0, y: 0, z: 0.14862849}
+--- !u!114 &5780062936966595237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7961846525001037598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc6a3a3b62c5c84ea22be7be0e8d1af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transparentShader: {fileID: -6465566751694194690, guid: f9a0bae02486de54ba8cd4eefc44c20a,
+    type: 3}
+  alphaValue: 0.25
+  changeAllChildrenTransparency: 1
