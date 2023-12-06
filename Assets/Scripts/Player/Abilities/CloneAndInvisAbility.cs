@@ -11,7 +11,6 @@ public class CloneAndInvisAbility : Ability{
     [SerializeField] float cloneTransparency;
 
     private void Start(){
-        //transparencyScript = GetComponent<ChangeTransparency>();
     }
 
     public override void UseAbility(){
