@@ -28,8 +28,6 @@ abstract public class Ability : MonoBehaviourWithPause {
         cooldownBase = cooldown;
         data = GetComponent<PlayerStatsData>();
 
-        Debug.Log(data);
-
         //Debug.Log(cooldownBase);
     }
 

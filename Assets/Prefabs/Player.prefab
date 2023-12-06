@@ -7982,6 +7982,9 @@ GameObject:
   - component: {fileID: 5203415281009972385}
   - component: {fileID: 740425822}
   - component: {fileID: 740425821}
+  - component: {fileID: 321858563}
+  - component: {fileID: 321858564}
+  - component: {fileID: 321858565}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -8291,10 +8294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b644b3b1f4e78404995dcc072261441e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftArm: {fileID: 0}
-  rightArm: {fileID: 0}
-  leftLeg: {fileID: 0}
-  rightLeg: {fileID: 0}
+  leftArm: {fileID: 740425821}
+  rightArm: {fileID: 321858564}
+  leftLeg: {fileID: 321858563}
+  rightLeg: {fileID: 321858565}
 --- !u!114 &740425821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8307,9 +8310,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a867753bd293e1a49a4f22080e68f162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _limbName: 
+  _limbName: Default Left Arm
   _limbType: 0
   _limbData: []
+  isPickUpObject: 0
+--- !u!114 &321858563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5203415281009972401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a867753bd293e1a49a4f22080e68f162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _limbName: Default Left Leg
+  _limbType: 2
+  _limbData: []
+  isPickUpObject: 0
+--- !u!114 &321858564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5203415281009972401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a867753bd293e1a49a4f22080e68f162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _limbName: Default Right Arm
+  _limbType: 1
+  _limbData: []
+  isPickUpObject: 0
+--- !u!114 &321858565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5203415281009972401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a867753bd293e1a49a4f22080e68f162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _limbName: Default Right Leg
+  _limbType: 3
+  _limbData: []
+  isPickUpObject: 0
 --- !u!1 &5203415281038534945
 GameObject:
   m_ObjectHideFlags: 0

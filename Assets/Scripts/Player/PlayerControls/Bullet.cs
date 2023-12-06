@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviourWithPause{
 
     private void OnCollisionEnter(Collision collision){
 
-        Debug.Log(collision.gameObject);
+        //Debug.Log(collision.gameObject);
 
         HpComponent hp = collision.gameObject.GetComponent<HpComponent>();
 

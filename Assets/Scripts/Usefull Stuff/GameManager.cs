@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviourWithPause {
     public PlayerUIManager playerUIManager { get ; set; }
     public MusicHandler musicHandler { get; set; }
 
+
     public int ability1 = -1;
     public int ability2 = -1;
 
