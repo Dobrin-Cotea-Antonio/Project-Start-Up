@@ -16,7 +16,6 @@ public class DoorScript : Interactable{
     void Start(){
         data = GetComponent<InteractableData>();
         data.OnPickUp += Interact;
-        Debug.Log(gameObject);
         gameObject.SetActive(false);
         doorID = doorCount++;
     }

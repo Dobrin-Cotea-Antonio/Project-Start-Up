@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShooterEnemyScript : EnemyAI{
 
-
     [Header("Shooting Data")]
+    [SerializeField] GameObject muzzleFlashPrefab;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform shootPosition;
     [SerializeField] float aimSpread;
@@ -14,8 +14,6 @@ public class ShooterEnemyScript : EnemyAI{
     [SerializeField] float bulletSpeed;
     [SerializeField] float bulletRange;
     [SerializeField] float bulletDamage;
-
-    
 
     protected override void Start(){
         base.Start();
@@ -49,6 +47,7 @@ public class ShooterEnemyScript : EnemyAI{
 
         lastAttackTime = float.MaxValue;
         GameObject b1 = Instantiate(bulletPrefab, shootPosition.position, Quaternion.identity);
+        Instantiate(muzzleFlashPrefab, shootPosition.position, shootPosition.rotation,shootPosition);
 
         Bullet bullet1 = b1.GetComponent<Bullet>();
         bullet1.speed = bulletSpeed;

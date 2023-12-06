@@ -6,7 +6,6 @@ using UnityEngine.VFX;
 public class SuicideBomberScript : EnemyAI{
 
     [Header("Explosion Data")]
-    [SerializeField] HpComponent hp;
     [SerializeField] float explosionScale;
     [SerializeField] GameObject explosionPrefab;
     [SerializeField] LayerMask mask;

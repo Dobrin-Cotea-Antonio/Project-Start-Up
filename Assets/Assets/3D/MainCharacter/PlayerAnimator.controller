@@ -143,7 +143,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ShootRightHand
-  m_Speed: 1
+  m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3501910646304287795}
@@ -195,7 +195,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ShootLeftHand
-  m_Speed: 1
+  m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8379133407004204161}
@@ -350,7 +350,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: cdfc885afb96b0241b05e17573a81cbf, type: 2}
+    m_Motion: {fileID: 7400000, guid: 34a02b950ece54346a176ac2bfea1567, type: 2}
     m_Threshold: 0.16666667
     m_Position: {x: -0.71, y: 0.71}
     m_TimeScale: 1
@@ -358,7 +358,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 54c9209d8c4d3d147937c8dc163df597, type: 2}
+    m_Motion: {fileID: 7400000, guid: 491bef2498aec344aa4eaa23f3382310, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: 0.71, y: 0.71}
     m_TimeScale: 1
@@ -366,7 +366,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 4b928b1f00d84a14c8eed22a71ec8706, type: 2}
+    m_Motion: {fileID: 7400000, guid: f5f5bce68131b0d409ab7e4efb0125f5, type: 2}
     m_Threshold: 0.5
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -374,7 +374,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 4b736e5ecdef1c142aaa8687446594d4, type: 2}
+    m_Motion: {fileID: 7400000, guid: 405a03a22b1d498408c8b078776a23f8, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -440,6 +440,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: gunState
     m_EventTreshold: 3
+  - m_ConditionMode: 1
+    m_ConditionEvent: canShoot
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isAiming
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5941499592588689937}
   m_Solo: 0
@@ -462,7 +468,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ShootRightHandHipfire
-  m_Speed: 1
+  m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2838659341551311162}
@@ -703,12 +709,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Blend
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: X
     m_Type: 1
     m_DefaultFloat: 0
@@ -744,6 +744,12 @@ AnimatorController:
     m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: canShoot
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
@@ -792,10 +798,10 @@ AnimatorController:
       m_Motion: {fileID: 7400000, guid: df8d6b9c1f0903b41b3ec56626b93f49, type: 2}
     - serializedVersion: 2
       m_State: {fileID: -5941499592588689937}
-      m_Motion: {fileID: 7400000, guid: 2665f321849c7ef4ea2032b0f21b3cfa, type: 2}
+      m_Motion: {fileID: 7400000, guid: ff2494facc34690478401c72b4c5d327, type: 2}
     - serializedVersion: 2
       m_State: {fileID: -6613788858565670093}
-      m_Motion: {fileID: 7400000, guid: cf80a3f88a01e004f9e462813a15adc4, type: 2}
+      m_Motion: {fileID: 7400000, guid: 3aca96dd07f9cda4ebb7d0bd7678c2e6, type: 2}
     - serializedVersion: 2
       m_State: {fileID: -2319227616581961736}
       m_Motion: {fileID: 7400000, guid: 84930cff5e468b94a8f5e8ad58fdc42f, type: 2}
@@ -816,10 +822,10 @@ AnimatorController:
       m_Motion: {fileID: 7400000, guid: cf80a3f88a01e004f9e462813a15adc4, type: 2}
     - serializedVersion: 2
       m_State: {fileID: 1539752761910032592}
-      m_Motion: {fileID: 7400000, guid: 2665f321849c7ef4ea2032b0f21b3cfa, type: 2}
+      m_Motion: {fileID: 7400000, guid: ff2494facc34690478401c72b4c5d327, type: 2}
     - serializedVersion: 2
       m_State: {fileID: -2745660614079187735}
-      m_Motion: {fileID: 7400000, guid: cf80a3f88a01e004f9e462813a15adc4, type: 2}
+      m_Motion: {fileID: 7400000, guid: 3aca96dd07f9cda4ebb7d0bd7678c2e6, type: 2}
     m_Behaviours: []
     m_BlendingMode: 1
     m_SyncedLayerIndex: 1
@@ -962,7 +968,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ShootLeftHandHipfire
-  m_Speed: 1
+  m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3289861390919258205}
@@ -1045,6 +1051,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: gunState
     m_EventTreshold: 3
+  - m_ConditionMode: 1
+    m_ConditionEvent: canShoot
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isAiming
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6613788858565670093}
   m_Solo: 0
@@ -1098,6 +1110,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: gunState
     m_EventTreshold: 2
+  - m_ConditionMode: 1
+    m_ConditionEvent: canShoot
+    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isAiming
     m_EventTreshold: 0
@@ -1255,6 +1270,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: gunState
     m_EventTreshold: 2
+  - m_ConditionMode: 1
+    m_ConditionEvent: canShoot
+    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isAiming
     m_EventTreshold: 0
