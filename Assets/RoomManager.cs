@@ -51,8 +51,13 @@ public class RoomManager : MonoBehaviourWithPause {
     }
 
     void SpawnRoomReward() {
-        dropPoint.transform.position = gameManager.player.transform.position;
         ArrowManager.arrowManager.ChangeStatus(true);
+
+        if (gameManager.currentRoomReward == GameManager.RewardTypes.None||dropPoint==null)
+            return;
+
+        dropPoint.transform.position = gameManager.player.transform.position;
+        
 
         switch (gameManager.currentRoomReward) {
             case GameManager.RewardTypes.Ability:

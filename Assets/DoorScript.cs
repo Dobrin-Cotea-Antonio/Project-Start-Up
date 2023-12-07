@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DoorScript : Interactable{
 
-    static int doorCount=0;
+    public static int doorCount=0;
 
     [SerializeField] string targetScene;
     [SerializeField] SpriteRenderer spriteRenderer;

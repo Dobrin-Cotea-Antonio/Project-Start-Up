@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviourWithPause {
 
 
     private void Awake(){
+
         if (gameManager != null) {
 
             gameManager.currentRoomReward = gameManager.nextRoomRewards[gameManager.roomSelected];  
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviourWithPause {
             levelCash = 1000;
             roomSelected = -1;
             gameManager = this;
-            currentRoomReward = RewardTypes.Ability;
+            currentRoomReward = RewardTypes.None;
             nextRoomRewards = new List<RewardTypes>();
             nextRoomRewards.Add(RewardTypes.None);
             nextRoomRewards.Add(RewardTypes.None);
@@ -72,6 +73,8 @@ public class GameManager : MonoBehaviourWithPause {
 
 
         }
+
+        DoorScript.doorCount = 0;
     }
 
     void GenerateReward() {
