@@ -7,7 +7,17 @@ public class RoomManager : MonoBehaviourWithPause {
     [Header("Prefab Data")]
     [SerializeField] GameObject[] abilityCards;
 
+    [Header("LimbPrefabs")]
+    [SerializeField] GameObject[] limbs;
+
+    [Header("HpPrefab")]
+    [SerializeField] GameObject hp;
+
+    [Header("DoorIcons")]
+    [SerializeField] Sprite[] _sprites; 
+
     public GameObject[] _abilityCards{ get { return abilityCards; } private set { abilityCards = value; } }
+    public Sprite[] sprites { get { return _sprites; } private set { _sprites = value; } }
 
     public static RoomManager roomManager { get; private set; }
 
@@ -35,7 +45,7 @@ public class RoomManager : MonoBehaviourWithPause {
         SpawnRoomReward();
 
         foreach (DoorScript d in doors)
-            d.gameObject.SetActive(true);
+            d.ActivateDoor(GameManager.gameManager.nextRoomRewards[d.doorID]);
 
         enemyManager.OnRoomClear -= OnRoomClear;
     }
@@ -43,15 +53,17 @@ public class RoomManager : MonoBehaviourWithPause {
     void SpawnRoomReward() {
         dropPoint.transform.position = gameManager.player.transform.position;
         ArrowManager.arrowManager.ChangeStatus(true);
-        Debug.Log(ArrowManager.arrowManager);
-
-        Debug.Log(gameManager.currentRoomReward);
 
         switch (gameManager.currentRoomReward) {
             case GameManager.RewardTypes.Ability:
                 SpawnAbility();
                 break;
-
+            case GameManager.RewardTypes.Hp:
+                SpawnHp();
+                break;
+            case GameManager.RewardTypes.Limb:
+                SpawnLimbs();
+                break;
         }
             
     
@@ -69,5 +81,17 @@ public class RoomManager : MonoBehaviourWithPause {
         int abilityIndex = Random.Range(0, abilityIndexes.Count);
 
         Instantiate(abilityCards[abilityIndexes[abilityIndex]], dropPoint.transform.position, Quaternion.identity);
+    }
+
+    void SpawnHp() {
+
+        Instantiate(hp, dropPoint.transform.position, Quaternion.identity);
+    
+    }
+
+    void SpawnLimbs() {
+        int limbIndex = Random.Range(0, limbs.Length);
+        Instantiate(limbs[limbIndex],dropPoint.transform.position,Quaternion.identity);
+
     }
 }

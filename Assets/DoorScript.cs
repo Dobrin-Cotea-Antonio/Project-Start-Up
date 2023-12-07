@@ -8,10 +8,11 @@ public class DoorScript : Interactable{
     static int doorCount=0;
 
     [SerializeField] string targetScene;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     InteractableData data;
 
-    int doorID;
+    public int doorID { get; private set; }
 
     void Start(){
         data = GetComponent<InteractableData>();
@@ -21,10 +22,37 @@ public class DoorScript : Interactable{
     }
 
     void Interact() {
-        if (isActiveAndEnabled)
+        if (isActiveAndEnabled) {
+            GameManager.gameManager.roomSelected = doorID;
+            Debug.Log(GameManager.gameManager.roomSelected);
             SceneManager.LoadScene(targetScene);
+        }
+
     }
 
+    public void ActivateDoor(GameManager.RewardTypes pType) {
+
+        gameObject.SetActive(true);
+        spriteRenderer.gameObject.SetActive(true);
+        switch (pType){
+            case GameManager.RewardTypes.Ability:
+                spriteRenderer.sprite = RoomManager.roomManager.sprites[2];
+                break;
+            case GameManager.RewardTypes.Hp:
+                spriteRenderer.sprite=RoomManager.roomManager.sprites[0];
+                break;
+            case GameManager.RewardTypes.Limb:
+                spriteRenderer.sprite = RoomManager.roomManager.sprites[1];
+                break;
+            case GameManager.RewardTypes.Shop:
+                spriteRenderer.sprite = RoomManager.roomManager.sprites[3];
+                break;
+
+
+        }
+
+
+    }
 
 
 }
