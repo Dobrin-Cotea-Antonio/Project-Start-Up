@@ -25,34 +25,64 @@ public enum LimbTypes{
     rightLeg
 }
 
-public class Limb : MonoBehaviourWithPause {
-    [Header("Limb Data")]
-    [SerializeField] string _limbName;
-    [SerializeField] protected LimbTypes _limbType;
-    [SerializeField] protected LimbData[] _limbData;
+public class Limb : Interactable {
 
     public string limbName { get { return _limbName; } protected set { _limbName = value; } }
     public LimbTypes limbType { get { return _limbType; } protected set { _limbType = value; } }
     public LimbData[] limbData { get { return _limbData; } protected set { _limbData = value; } }
+    public string itemName { get { return _limbName; } protected set { _limbName = value; } }
+    public GameObject limbMeshHolder { get { return _limbMeshHolder; } protected set { _limbMeshHolder = value; } }
+    public GameObject limbPrefab { get { return _limbPrefab; } protected set { _limbPrefab = value; } }
 
-    public Sprite sprite { get; protected set; }
-    public GameObject prefab { get; protected set; }
-    public string itemName { get; protected set; }
+    public Dictionary<LimbBonuses,float> limbDataDictionary{ get; protected set;}
+
+    [Header("Limb Data")]
+    [SerializeField] string _limbName;
+    [SerializeField] protected LimbTypes _limbType;
+    [SerializeField] protected LimbData[] _limbData;
+    [SerializeField] protected GameObject _limbMeshHolder;
+    [SerializeField] protected GameObject _limbPrefab;
+
+    [Header("Status")]
+    [SerializeField] bool isPickUpObject;
 
 
-    protected PlayerStatsData data;
+    protected PlayerStatsData playerData;
     protected PlayerControls player;
+    protected InteractableData interactData;
+
+    bool initialSetup = false;
 
 
     protected virtual void Start(){
 
         limbType = _limbType;
-        data = GetComponent<PlayerStatsData>();
-        player = GetComponent<PlayerControls>();
 
-        if (data != null)
-            AddBonuses(true);
+        limbDataDictionary = new Dictionary<LimbBonuses, float>();
 
+        ResetDictionary();
+    }
+
+    void Update(){
+
+
+        if (!initialSetup){
+
+            if (isPickUpObject){
+                interactData = GetComponent<InteractableData>();
+                interactData.OnPickUp += PickUp;
+                interactData.popUpText = limbName;
+                interactData.SetUIText(limbName);
+
+
+            } else {
+                playerData = GetComponent<PlayerStatsData>();
+                player = GetComponent<PlayerControls>();
+                AddBonuses(true);
+            }
+
+            initialSetup = true;
+        }
     }
 
     protected void AddBonuses(bool pAdd){//true adds the values;false removes them 
@@ -61,21 +91,21 @@ public class Limb : MonoBehaviourWithPause {
             switch (bonus.limbBonusType){
                 case LimbBonuses.movementSpeed:
                     if (pAdd)
-                        data.AddMovementModifier(limbType.ToString(), bonus.limbBonusValue);
+                        playerData.AddMovementModifier(limbType.ToString(), bonus.limbBonusValue);
                     else
-                        data.AddMovementModifier(limbType.ToString(), 0);
+                        playerData.AddMovementModifier(limbType.ToString(), 0);
                     break;
                 case LimbBonuses.attackSpeed:
                     if (pAdd)
-                        data.AddShootSpeedModifier(limbType.ToString(), bonus.limbBonusValue);
+                        playerData.AddShootSpeedModifier(limbType.ToString(), bonus.limbBonusValue);
                     else
-                        data.AddShootSpeedModifier(limbType.ToString(), 0);
+                        playerData.AddShootSpeedModifier(limbType.ToString(), 0);
                     break;
                 case LimbBonuses.abilitiesCooldown:
                     if (pAdd)
-                        data.AddAbilityRechargeSpeedModifier(limbType.ToString(), bonus.limbBonusValue);
+                        playerData.AddAbilityRechargeSpeedModifier(limbType.ToString(), bonus.limbBonusValue);
                     else
-                        data.AddAbilityRechargeSpeedModifier(limbType.ToString(), 0);
+                        playerData.AddAbilityRechargeSpeedModifier(limbType.ToString(), 0);
                     break;
                 case LimbBonuses.dashCharges:
                     if (pAdd)
@@ -85,9 +115,9 @@ public class Limb : MonoBehaviourWithPause {
                     break;
                 case LimbBonuses.bulletSpeed:
                     if (pAdd)
-                        data.AddBulletSpeedModifier(limbType.ToString(), bonus.limbBonusValue);
+                        playerData.AddBulletSpeedModifier(limbType.ToString(), bonus.limbBonusValue);
                     else
-                        data.AddBulletSpeedModifier(limbType.ToString(), 0);
+                        playerData.AddBulletSpeedModifier(limbType.ToString(), 0);
                     break;
 
             }
@@ -96,13 +126,72 @@ public class Limb : MonoBehaviourWithPause {
 
     }
 
-    public void SetLimbData(LimbData[] pLimbData) {
-        if (data != null)
+    public void SwapLimbData(Limb pLimb) {
+
+        LimbData[] tempLimbData = limbData;
+        string tempName = limbName;
+        GameObject tempPrefab=limbPrefab;
+
+        SetLimbData(pLimb.limbData, pLimb.limbName,pLimb.limbPrefab);
+        pLimb.SetLimbData(tempLimbData, tempName, tempPrefab);
+    }
+
+    public void SetLimbData(LimbData[] pLimbData,string pName,GameObject pPrefab) {
+        if (playerData != null)
             AddBonuses(false);
+
+        limbName = pName;
         limbData = pLimbData;
-        if (data != null)
+        limbPrefab = pPrefab;
+
+        if (isPickUpObject){
+            interactData.popUpText = limbName;
+            interactData.SetUIText(limbName);
+
+            Destroy(limbMeshHolder.transform.GetChild(0).gameObject);
+            GameObject arm = Instantiate(limbPrefab, limbMeshHolder.transform);
+            arm.transform.localPosition = new Vector3(0, 0, 0);
+
+        }
+
+        ResetDictionary();
+
+        if (playerData != null)
             AddBonuses(true);
 
     }
 
+    void PickUp() {
+        if (interactData.levelCost > GameManager.gameManager.levelCash)
+            return;
+
+        GameManager.gameManager.levelCash -= interactData.levelCost;
+        interactData.levelCost = 0;
+        interactData.isShopItem = false;
+        GameManager.gameManager.playerUIManager.SetPickUpText(interactData.pickUpText);
+        LimbManager.limbManager.AddLimb(this);
+
+    }
+
+    void ResetDictionary() {
+        limbDataDictionary[LimbBonuses.movementSpeed] = 0;
+        limbDataDictionary[LimbBonuses.attackSpeed] = 0;
+        limbDataDictionary[LimbBonuses.dashCharges] = 0;
+        limbDataDictionary[LimbBonuses.bulletSpeed] = 0;
+        limbDataDictionary[LimbBonuses.abilitiesCooldown] = 0;
+
+        foreach (LimbData d in _limbData){
+            limbDataDictionary[d.limbBonusType] = d.limbBonusValue;
+        }
+    }
+
+    public void SetLimbsFromGameManager(LimbData[] pLimbData, string pName, GameObject pPrefab) {
+
+        limbName = pName;
+        limbData = pLimbData;
+        limbPrefab = pPrefab;
+        ResetDictionary();
+        AddBonuses(true);
+
+    }
 }

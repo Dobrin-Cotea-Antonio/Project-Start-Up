@@ -71,12 +71,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicMultiplier: 2
   animator: {fileID: 6333888547365717946}
+  hp: {fileID: 4024330955479752224}
   speed: 7
   canLoseAgro: 0
   chaseRange: 20
   attackRange: 3.5
   attackCooldown: 100
-  hp: {fileID: 4024330955479752224}
   explosionScale: 1.5
   explosionPrefab: {fileID: 2403678169344112750, guid: ec1d9d81fe58aa047bc7c476c5ae5fe4,
     type: 3}
@@ -546,17 +546,17 @@ PrefabInstance:
     - target: {fileID: 5897786269938923134, guid: 1d423017ff8c75e43a7e6b6a4006ed97,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 5897786269938923134, guid: 1d423017ff8c75e43a7e6b6a4006ed97,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 5897786269938923134, guid: 1d423017ff8c75e43a7e6b6a4006ed97,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 5897786269938923134, guid: 1d423017ff8c75e43a7e6b6a4006ed97,
         type: 3}
