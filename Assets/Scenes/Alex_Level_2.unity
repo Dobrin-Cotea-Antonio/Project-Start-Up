@@ -7796,6 +7796,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1356384119412351891, guid: 56fc4a773b940df49b0a8a41d671d758,
+        type: 3}
+      propertyPath: targetScene
+      value: Alex_Level_2
+      objectReference: {fileID: 0}
     - target: {fileID: 1695968095368470260, guid: 56fc4a773b940df49b0a8a41d671d758,
         type: 3}
       propertyPath: m_Name
@@ -9201,6 +9206,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1356384119412351891, guid: 56fc4a773b940df49b0a8a41d671d758,
+        type: 3}
+      propertyPath: targetScene
+      value: Alex_Level_1
+      objectReference: {fileID: 0}
     - target: {fileID: 1695968095368470260, guid: 56fc4a773b940df49b0a8a41d671d758,
         type: 3}
       propertyPath: m_Name

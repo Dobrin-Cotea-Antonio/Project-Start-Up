@@ -11431,7 +11431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 5532d4d44efc6da4f92e5c60c79b2887, type: 3}
-  abilityDuration: 7.5
+  abilityDuration: 14
   cooldown: 38
   movementSpeedBonus: 30
   shootSpeedBonus: 40
