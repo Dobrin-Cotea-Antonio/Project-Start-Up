@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd33bfb44e87fba48930ebea4a0e58c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicMultiplier: 2
+  musicMultiplier: 5
   animator: {fileID: 7474777292874467696}
   hp: {fileID: 3724515001782879745}
   speed: 5

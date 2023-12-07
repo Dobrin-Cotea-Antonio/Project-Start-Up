@@ -11293,7 +11293,7 @@ MonoBehaviour:
   interactionSphere: {fileID: 5203415282744761067}
   modelHolder: {fileID: 1347884211003953491}
   animator: {fileID: 1347884211003953488}
-  moveSpeed: 12
+  moveSpeed: 14
   interactionRange: 5
   dashPrefab: {fileID: 3113624313314420589, guid: c1af8dbdfadddc9408c6798621626ae9,
     type: 3}
@@ -11347,7 +11347,7 @@ MonoBehaviour:
   aimSpeedDecrease: -50
   damageBullet: 15
   rangeBullet: 100
-  speedBullet: 75
+  speedBullet: 160
 --- !u!114 &5203415281009972408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11393,8 +11393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: e9a188e76bb3b6f4bb6d6e2ed451bcfd, type: 3}
-  abilityDuration: 5
-  cooldown: 10
+  abilityDuration: 7
+  cooldown: 20
   shieldPrefab: {fileID: 5127601771888801490, guid: 3d9cadfb78e77e94dbf850680037f0ff,
     type: 3}
   playerHP: {fileID: 5203415281009972385}
@@ -11412,7 +11412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 8e5861fad3189ec4691c6c3ef07c9120, type: 3}
   abilityDuration: 10
-  cooldown: 30
+  cooldown: 25
   transparencyScript: {fileID: 1347884211003953494}
   clonePrefab: {fileID: 1968314560677565632, guid: 2d05628c08072404f8af880276ada155,
     type: 3}
@@ -11431,8 +11431,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 5532d4d44efc6da4f92e5c60c79b2887, type: 3}
-  abilityDuration: 10
-  cooldown: 30
+  abilityDuration: 7.5
+  cooldown: 38
   movementSpeedBonus: 30
   shootSpeedBonus: 40
   hpRegenPerSec: 10
@@ -11450,8 +11450,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 15b88b8a6da3e984cbbdd1292d46974c, type: 3}
-  abilityDuration: 10
-  cooldown: 30
+  abilityDuration: 7.5
+  cooldown: 40
   timeSlowPercentage: 75
 --- !u!65 &5203415281009972391
 BoxCollider:
