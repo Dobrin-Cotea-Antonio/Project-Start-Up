@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviourWithPause {
     public PlayerUIManager playerUIManager { get ; set; }
     public MusicHandler musicHandler { get; set; }
 
+
+    public List<LimbData[]> limbsData = new List<LimbData[]>();
+    public string[] limbNames=new string[4] {"","","",""};
+    public GameObject[] limbPrefabs=new GameObject[4] {null,null,null,null}; 
+
+
     public int ability1 = -1;
     public int ability2 = -1;
 
@@ -36,15 +42,25 @@ public class GameManager : MonoBehaviourWithPause {
             gameManager.currentRoomReward = nextRoomReward;
             gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 5));
             gameManager.abilitySet = false;
-            //Debug.Log(gameManager.nextRoomReward);
             Destroy(gameObject);
         }
         else{
             DontDestroyOnLoad(gameObject);
-            levelCash = 1000;
+            limbsData = new List<LimbData[]>();
+            limbsData.Add(null);
+            limbsData.Add(null);
+            limbsData.Add(null);
+            limbsData.Add(null);
+            limbNames = new string[4] { "", "", "", "" };
+            limbPrefabs = new GameObject[4] { null, null, null, null };
+
+
+    levelCash = 1000;
             gameManager = this;
             gameManager.currentRoomReward = RewardTypes.Ability;
             gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 5));
+
+
 
 
         }

@@ -30,26 +30,39 @@ public class Interaction : MonoBehaviourWithPause{
         if (other.CompareTag("Interactable")) {
             InteractableData data = other.GetComponent<InteractableData>();
 
-            if (data) {
-                if (data.UI != null)
-                    data.UI.SetActive(true);
-                if (data.objectType is AbilityPickUp) {
-                    if (data.isShopItem) {
-                        UIManager.SetAbilityPickUpText("Buy",data.pickUpText,data.levelCost);
-                    }
-                    else {
-                        UIManager.SetAbilityPickUpText(data.pickUpText);
-                    }
+            if (!data){
+                isColliding = true;
+                return;
+            }
+
+            if (data.UI != null)
+                data.UI.SetActive(true);
+
+            if (data.isShopItem){
+
+                if (data.objectType is AbilityPickUp){
+                    UIManager.SetAbilityPickUpText("Buy", data.pickUpText, data.levelCost);
                     UIManager.EnableAbilityPickUpPrompt(true);
-
-                }
-
-                else {
-
-                    UIManager.SetPickUpText(data.pickUpText);
-                    UIManager.EnablePickUpPrompt(true); 
+                } else {
+                    UIManager.SetPickUpText("Buy", data.pickUpText, data.levelCost);
+                    UIManager.EnablePickUpPrompt(true);
                 }
             }
+            else {
+                if (data.objectType is AbilityPickUp){
+                    UIManager.SetAbilityPickUpText(data.pickUpText);
+                    UIManager.EnableAbilityPickUpPrompt(true);
+                }
+                else {
+                    UIManager.SetPickUpText(data.pickUpText);
+                    UIManager.EnablePickUpPrompt(true);
+                }
+            }
+
+            if (data.objectType is Limb){
+                UIManager.ToggleLimbComparison(true, LimbManager.limbManager.GetLimb(((Limb)data.objectType).limbType), ((Limb)data.objectType));
+            }
+
 
             isColliding = true;
         }
@@ -60,15 +73,15 @@ public class Interaction : MonoBehaviourWithPause{
             InteractableData data = other.GetComponent<InteractableData>();
 
             if (data.objectType is AbilityPickUp){
-                UIManager.EnableAbilityPickUpPrompt(false);
                 ((AbilityPickUp)data.objectType).PickUp(1);
                 wasInteractKeyPressed = false;
             }
             else {
-                other.gameObject.GetComponent<InteractableData>().PickUp();
-                UIManager.EnablePickUpPrompt(false);
+                //other.gameObject.GetComponent<InteractableData>().PickUp();
+                data.PickUp();
+                if (data.objectType is Limb)
+                    UIManager.ToggleLimbComparison(true, LimbManager.limbManager.GetLimb(((Limb)data.objectType).limbType), ((Limb)data.objectType));
                 wasInteractKeyPressed = false;
-                Destroy(other.gameObject);
             }
 
             wasInteractKeyPressed = false;
@@ -80,8 +93,6 @@ public class Interaction : MonoBehaviourWithPause{
 
             if (data.objectType is AbilityPickUp) {
                 ((AbilityPickUp)data.objectType).PickUp(2);
-                UIManager.EnableAbilityPickUpPrompt(false);
-                //Destroy(other.gameObject);
             }
 
             wasInteractKeyPressedSecondary = false;
@@ -96,6 +107,8 @@ public class Interaction : MonoBehaviourWithPause{
                 data.UI.SetActive(false);
             if (data.objectType is AbilityPickUp)
                 UIManager.EnableAbilityPickUpPrompt(false);
+            if (data.objectType is Limb)
+                UIManager.ToggleLimbComparison(false, LimbManager.limbManager.GetLimb(((Limb)data.objectType).limbType), ((Limb)data.objectType));
         }
         UIManager.EnablePickUpPrompt(false);
 
