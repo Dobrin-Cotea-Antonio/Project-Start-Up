@@ -69,7 +69,7 @@ MonoBehaviour:
   - {fileID: 5672556800509065596, guid: ad7633644a5042c48a7caacf978fa4d9, type: 3}
   hp: {fileID: 66513208730790441, guid: 514112a372188b141ad0814b73c36c56, type: 3}
   _sprites:
-  - {fileID: 0}
-  - {fileID: 21300000, guid: e4ed1c4ca5fbba94594d0e8c04adf176, type: 3}
+  - {fileID: 21300000, guid: 3d1478305bf449643900363549c800fe, type: 3}
+  - {fileID: 21300000, guid: 20202e7ac801f85438e043e6fe506326, type: 3}
   - {fileID: 21300000, guid: 9503156c64ccaf04c829f559313821ff, type: 3}
   - {fileID: 21300000, guid: e4ed1c4ca5fbba94594d0e8c04adf176, type: 3}

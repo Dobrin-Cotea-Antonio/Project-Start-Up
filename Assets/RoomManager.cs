@@ -70,7 +70,7 @@ public class RoomManager : MonoBehaviourWithPause {
     
     }
 
-    void SpawnAbility() {
+    void SpawnAbility(bool pIsShopItem=false) {
 
         List<int> abilityIndexes = new List<int>();
         for (int i = 0; i < 4; i++)
@@ -80,18 +80,35 @@ public class RoomManager : MonoBehaviourWithPause {
 
         int abilityIndex = Random.Range(0, abilityIndexes.Count);
 
-        Instantiate(abilityCards[abilityIndexes[abilityIndex]], dropPoint.transform.position, Quaternion.identity);
+        GameObject g = Instantiate(abilityCards[abilityIndexes[abilityIndex]], dropPoint.transform.position, Quaternion.identity);
+
+        if (pIsShopItem){
+            InteractableData data = g.GetComponent<InteractableData>();
+            data.isShopItem = true;
+            data.levelCost = 200;
+        }
     }
 
-    void SpawnHp() {
+    void SpawnHp(bool pIsShopItem = false) {
 
-        Instantiate(hp, dropPoint.transform.position, Quaternion.identity);
+        GameObject g = Instantiate(hp, dropPoint.transform.position, Quaternion.identity);
+        if (pIsShopItem) {
+            InteractableData data = g.GetComponent<InteractableData>();
+            data.isShopItem = true;
+            data.levelCost = 100;
+        }
     
     }
 
-    void SpawnLimbs() {
+    void SpawnLimbs(bool pIsShopItem = false) {
         int limbIndex = Random.Range(0, limbs.Length);
-        Instantiate(limbs[limbIndex],dropPoint.transform.position,Quaternion.identity);
+        GameObject g = Instantiate(limbs[limbIndex],dropPoint.transform.position,Quaternion.identity);
+
+        if (pIsShopItem){
+            InteractableData data = g.GetComponent<InteractableData>();
+            data.isShopItem = true;
+            data.levelCost = 250;
+        }
 
     }
 }

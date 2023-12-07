@@ -43,6 +43,7 @@ public class DoorScript : Interactable{
                 break;
             case GameManager.RewardTypes.Limb:
                 spriteRenderer.sprite = RoomManager.roomManager.sprites[1];
+                spriteRenderer.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                 break;
             case GameManager.RewardTypes.Shop:
                 spriteRenderer.sprite = RoomManager.roomManager.sprites[3];
