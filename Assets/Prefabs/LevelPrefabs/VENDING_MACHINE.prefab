@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 6252559207001804234}
   - component: {fileID: 8151931152670669056}
   - component: {fileID: 5137377012561641992}
+  - component: {fileID: 1673086067650766969}
   m_Layer: 0
   m_Name: VENDING_MACHINE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7019518548884046447
 Transform:
@@ -101,3 +102,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.023133893, y: 0.025176173, z: 0.020209972}
   m_Center: {x: 0.00012539515, y: 0.0025880884, z: 0.00010266665}
+--- !u!114 &1673086067650766969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7647541258043234517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc6a3a3b62c5c84ea22be7be0e8d1af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transparentShader: {fileID: -6465566751694194690, guid: f9a0bae02486de54ba8cd4eefc44c20a,
+    type: 3}
+  alphaValue: 0.25
+  changeAllChildrenTransparency: 1
