@@ -184,4 +184,14 @@ public class Limb : Interactable {
             limbDataDictionary[d.limbBonusType] = d.limbBonusValue;
         }
     }
+
+    public void SetLimbsFromGameManager(LimbData[] pLimbData, string pName, GameObject pPrefab) {
+
+        limbName = pName;
+        limbData = pLimbData;
+        limbPrefab = pPrefab;
+        ResetDictionary();
+        AddBonuses(true);
+
+    }
 }
