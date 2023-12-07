@@ -20,22 +20,22 @@ PrefabInstance:
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.97
+      value: 33.48
       objectReference: {fileID: 0}
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.77
+      value: -32.09
       objectReference: {fileID: 0}
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071078
       objectReference: {fileID: 0}
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
@@ -45,7 +45,7 @@ PrefabInstance:
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000014901161
+      value: 0.70710576
       objectReference: {fileID: 0}
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
@@ -60,7 +60,7 @@ PrefabInstance:
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3474570909118466142, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
@@ -70,12 +70,17 @@ PrefabInstance:
     - target: {fileID: 4284039772480590564, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
       propertyPath: m_Name
-      value: Door_new
+      value: Door_new (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4284039772480590564, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623558276139794192, guid: 71245c65653a3574d9ccffe3df4685c5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 4623558276139794192, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
@@ -134,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a494c95987f45833247186dc8da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScene: 
+  targetScene: SceneAntonio
 --- !u!114 &2937663074509452726
 MonoBehaviour:
   m_ObjectHideFlags: 0

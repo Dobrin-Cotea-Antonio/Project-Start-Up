@@ -64,7 +64,7 @@ public class PlayerUIManager : MonoBehaviourWithPause{
         ability1Input.text = string.Format("[{0}]", controls.keyList["interact"]);
         ability2Input.text = string.Format("[{0}]", controls.keyList["interact2"]);
         interactionInput.text = string.Format("[{0}]",controls.keyList["interact"]);
-        levelCash.text = string.Format("{0}$",gameManager.levelCash);
+        levelCash.text = string.Format("{0}",gameManager.levelCash);
 
         UpdateDashCharges();
 
