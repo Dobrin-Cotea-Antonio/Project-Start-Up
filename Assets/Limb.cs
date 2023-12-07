@@ -31,6 +31,8 @@ public class Limb : Interactable {
     public LimbTypes limbType { get { return _limbType; } protected set { _limbType = value; } }
     public LimbData[] limbData { get { return _limbData; } protected set { _limbData = value; } }
     public string itemName { get { return _limbName; } protected set { _limbName = value; } }
+    public GameObject limbMeshHolder { get { return _limbMeshHolder; } protected set { _limbMeshHolder = value; } }
+    public GameObject limbPrefab { get { return _limbPrefab; } protected set { _limbPrefab = value; } }
 
     public Dictionary<LimbBonuses,float> limbDataDictionary{ get; protected set;}
 
@@ -38,13 +40,11 @@ public class Limb : Interactable {
     [SerializeField] string _limbName;
     [SerializeField] protected LimbTypes _limbType;
     [SerializeField] protected LimbData[] _limbData;
+    [SerializeField] protected GameObject _limbMeshHolder;
+    [SerializeField] protected GameObject _limbPrefab;
 
     [Header("Status")]
     [SerializeField] bool isPickUpObject;
-
-
-    public Sprite sprite { get; protected set; }
-    public GameObject prefab { get; protected set; }
 
 
     protected PlayerStatsData playerData;
@@ -73,6 +73,7 @@ public class Limb : Interactable {
                 interactData.OnPickUp += PickUp;
                 interactData.popUpText = limbName;
                 interactData.SetUIText(limbName);
+
 
             } else {
                 playerData = GetComponent<PlayerStatsData>();
@@ -129,21 +130,28 @@ public class Limb : Interactable {
 
         LimbData[] tempLimbData = limbData;
         string tempName = limbName;
+        GameObject tempPrefab=limbPrefab;
 
-        SetLimbData(pLimb.limbData, pLimb.limbName);
-        pLimb.SetLimbData(tempLimbData, tempName);
+        SetLimbData(pLimb.limbData, pLimb.limbName,pLimb.limbPrefab);
+        pLimb.SetLimbData(tempLimbData, tempName, tempPrefab);
     }
 
-    public void SetLimbData(LimbData[] pLimbData,string pName) {
+    public void SetLimbData(LimbData[] pLimbData,string pName,GameObject pPrefab) {
         if (playerData != null)
             AddBonuses(false);
 
         limbName = pName;
         limbData = pLimbData;
+        limbPrefab = pPrefab;
 
         if (isPickUpObject){
             interactData.popUpText = limbName;
             interactData.SetUIText(limbName);
+
+            Destroy(limbMeshHolder.transform.GetChild(0).gameObject);
+            GameObject arm = Instantiate(limbPrefab, limbMeshHolder.transform);
+            arm.transform.localPosition = new Vector3(0, 0, 0);
+
         }
 
         ResetDictionary();
@@ -157,13 +165,10 @@ public class Limb : Interactable {
         if (interactData.levelCost > GameManager.gameManager.levelCash)
             return;
 
-
-        //GameManager.gameManager.playerUIManager.EnablePickUpPrompt(false);
         GameManager.gameManager.levelCash -= interactData.levelCost;
         interactData.levelCost = 0;
         interactData.isShopItem = false;
         GameManager.gameManager.playerUIManager.SetPickUpText(interactData.pickUpText);
-        //GameManager.gameManager.playerUIManager.EnablePickUpPrompt(true);
         LimbManager.limbManager.AddLimb(this);
 
     }
