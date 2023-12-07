@@ -11411,8 +11411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 8e5861fad3189ec4691c6c3ef07c9120, type: 3}
-  abilityDuration: 17
-  cooldown: 25
+  abilityDuration: 12
+  cooldown: 34
   transparencyScript: {fileID: 1347884211003953494}
   clonePrefab: {fileID: 1968314560677565632, guid: 2d05628c08072404f8af880276ada155,
     type: 3}
