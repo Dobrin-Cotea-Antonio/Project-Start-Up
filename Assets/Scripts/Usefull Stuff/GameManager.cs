@@ -23,24 +23,27 @@ public class GameManager : MonoBehaviourWithPause {
     public int ability2 = -1;
 
     public bool abilitySet = false;
+    public int roomSelected;
 
     public enum RewardTypes { 
         Hp,
-        Shop,
         Limb,
         Ability,
-        HubCurrency,
+        Shop,
         None
     }
 
     public RewardTypes currentRoomReward { get; set; }
-    public RewardTypes nextRoomReward { get; set; }
+    public List<RewardTypes> nextRoomRewards { get; set; }
 
 
     private void Awake(){
         if (gameManager != null) {
-            gameManager.currentRoomReward = nextRoomReward;
-            gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 5));
+
+            gameManager.currentRoomReward = gameManager.nextRoomRewards[gameManager.roomSelected];  
+            
+            //roomSelected = -1;
+            GenerateReward();
             gameManager.abilitySet = false;
             Destroy(gameObject);
         }
@@ -55,15 +58,30 @@ public class GameManager : MonoBehaviourWithPause {
             limbPrefabs = new GameObject[4] { null, null, null, null };
 
 
-    levelCash = 1000;
+            levelCash = 1000;
+            roomSelected = -1;
             gameManager = this;
-            gameManager.currentRoomReward = RewardTypes.Ability;
-            gameManager.nextRoomReward = ((RewardTypes)Random.Range(0, 5));
+            currentRoomReward = RewardTypes.Ability;
+            nextRoomRewards = new List<RewardTypes>();
+            nextRoomRewards.Add(RewardTypes.None);
+            nextRoomRewards.Add(RewardTypes.None);
 
+
+            GenerateReward();
 
 
 
         }
+    }
+
+    void GenerateReward() {
+        gameManager.nextRoomRewards[0] = ((RewardTypes)Random.Range(0, 3));
+        gameManager.nextRoomRewards[1] = ((RewardTypes)Random.Range(0, 3));
+        while (gameManager.nextRoomRewards[0] == gameManager.nextRoomRewards[1]) {
+            gameManager.nextRoomRewards[1] = ((RewardTypes)Random.Range(0, 3));
+        }
+
+        Debug.Log(gameManager.nextRoomRewards[0] + " " + gameManager.nextRoomRewards[1]);
     }
 
     private void Update(){

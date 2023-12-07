@@ -33,8 +33,6 @@ public class ChangeTransparency : MonoBehaviourWithPause{
         foreach (Transform r in transform.GetComponentsInChildren<Transform>()) 
             allChildrenTransforms.Add(r);
 
-        Debug.Log(allChildrenTransforms.Count);
-
         for (int i = 0; i < allChildrenTransforms.Count; i++)
             FindMaterialsAndChangeTransparency(allChildrenTransforms[i].GetComponent<Renderer>(), alphaValue);
 

@@ -147,6 +147,7 @@ public class EnemyAI : MonoBehaviourWithPause {
     private void OnDestroy(){
         MusicHandler.musicHandler.AddMusicIntensity(MusicHandler.musicHandler._enemyDeathIntensity);
         OnEnemyDeath!.Invoke(this);
+        GameManager.gameManager.levelCash += 25;
     }
 
     private void OnDrawGizmosSelected()

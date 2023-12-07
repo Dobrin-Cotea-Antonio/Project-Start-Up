@@ -62,3 +62,14 @@ MonoBehaviour:
   - {fileID: 798632714276745546, guid: 5df6f135e2ad6c847ab8865e9fe0b706, type: 3}
   - {fileID: 4385605075200158858, guid: 580a929775c360147a6473c74ac09ee0, type: 3}
   - {fileID: 7264795029492343719, guid: 11644c5718755a64a99b3bc79927841b, type: 3}
+  limbs:
+  - {fileID: 5672556800509065596, guid: 87c6d764efa8e044e86c570a3affef54, type: 3}
+  - {fileID: 5672556800509065596, guid: e5bc525bbb733ca42bb1500461d60123, type: 3}
+  - {fileID: 5672556800509065596, guid: b5eb42b3ba6a7814ebdf4bf1e56daa7b, type: 3}
+  - {fileID: 5672556800509065596, guid: ad7633644a5042c48a7caacf978fa4d9, type: 3}
+  hp: {fileID: 66513208730790441, guid: 514112a372188b141ad0814b73c36c56, type: 3}
+  _sprites:
+  - {fileID: 21300000, guid: 3d1478305bf449643900363549c800fe, type: 3}
+  - {fileID: 21300000, guid: 20202e7ac801f85438e043e6fe506326, type: 3}
+  - {fileID: 21300000, guid: 9503156c64ccaf04c829f559313821ff, type: 3}
+  - {fileID: 21300000, guid: e4ed1c4ca5fbba94594d0e8c04adf176, type: 3}
