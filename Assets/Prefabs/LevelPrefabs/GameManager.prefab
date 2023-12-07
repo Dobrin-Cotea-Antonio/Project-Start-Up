@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1465671535718479650}
   - component: {fileID: 1465671535718479660}
   - component: {fileID: 1941912457}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,6 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a9836f29f0eb047b8b51f5a3471bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability1: -1
+  ability2: -1
+  abilitySet: 0
 --- !u!114 &1941912457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +78,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aa54cfc9a3823c24abade1002418a187, type: 3}
   - {fileID: 8300000, guid: 6fe139afc045c4b409d20c522988128f, type: 3}
   transitionTimeSpeed: 10
-  targetVolume: 0.05
+  targetVolume: 0.1
   tickDownPerSec: 50
   explosionIntensity: 1000
   gunShotIntensity: 100
