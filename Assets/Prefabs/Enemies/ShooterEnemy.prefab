@@ -884,8 +884,8 @@ MonoBehaviour:
   hp: {fileID: 3724515001782879745}
   speed: 5
   canLoseAgro: 0
-  chaseRange: 13
-  attackRange: 14.5
+  chaseRange: 14.5
+  attackRange: 16.3
   attackCooldown: 0.6
   muzzleFlashPrefab: {fileID: 5195697588493737052, guid: 02e4256ea2871b248afac8e73b5a249e,
     type: 3}

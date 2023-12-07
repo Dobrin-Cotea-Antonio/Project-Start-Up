@@ -349,21 +349,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
@@ -3779,7 +3764,7 @@ PrefabInstance:
     - target: {fileID: 178072090303717229, guid: 6bc4534be33dab7449345d33709672b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.32
+      value: 16.07
       objectReference: {fileID: 0}
     - target: {fileID: 178072090303717229, guid: 6bc4534be33dab7449345d33709672b8,
         type: 3}
@@ -3789,7 +3774,7 @@ PrefabInstance:
     - target: {fileID: 178072090303717229, guid: 6bc4534be33dab7449345d33709672b8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.353666
+      value: -24.353699
       objectReference: {fileID: 0}
     - target: {fileID: 178072090303717229, guid: 6bc4534be33dab7449345d33709672b8,
         type: 3}
@@ -3835,16 +3820,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Container (16)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607780984530536537, guid: 6bc4534be33dab7449345d33709672b8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0000333786
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607780984530536537, guid: 6bc4534be33dab7449345d33709672b8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -11.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bc4534be33dab7449345d33709672b8, type: 3}
@@ -4897,21 +4872,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
@@ -7075,21 +7035,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
@@ -7408,21 +7353,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
@@ -8669,21 +8599,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
@@ -8963,21 +8878,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
@@ -9450,21 +9350,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
@@ -12015,21 +11900,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
@@ -15259,21 +15129,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder

@@ -58,6 +58,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a9836f29f0eb047b8b51f5a3471bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  limbNames:
+  - 
+  - 
+  - 
+  - 
+  limbPrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ability1: -1
   ability2: -1
   abilitySet: 0
@@ -78,7 +88,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aa54cfc9a3823c24abade1002418a187, type: 3}
   - {fileID: 8300000, guid: 6fe139afc045c4b409d20c522988128f, type: 3}
   transitionTimeSpeed: 10
-  targetVolume: 0.1
+  targetVolume: 0.17
   tickDownPerSec: 50
   explosionIntensity: 1000
   gunShotIntensity: 100
