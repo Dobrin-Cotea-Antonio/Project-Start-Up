@@ -11393,8 +11393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: e9a188e76bb3b6f4bb6d6e2ed451bcfd, type: 3}
-  abilityDuration: 7
-  cooldown: 20
+  abilityDuration: 15
+  cooldown: 42
   shieldPrefab: {fileID: 5127601771888801490, guid: 3d9cadfb78e77e94dbf850680037f0ff,
     type: 3}
   playerHP: {fileID: 5203415281009972385}
@@ -11411,7 +11411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 8e5861fad3189ec4691c6c3ef07c9120, type: 3}
-  abilityDuration: 10
+  abilityDuration: 17
   cooldown: 25
   transparencyScript: {fileID: 1347884211003953494}
   clonePrefab: {fileID: 1968314560677565632, guid: 2d05628c08072404f8af880276ada155,
@@ -11450,7 +11450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 15b88b8a6da3e984cbbdd1292d46974c, type: 3}
-  abilityDuration: 7.5
+  abilityDuration: 12.7
   cooldown: 40
   timeSlowPercentage: 75
 --- !u!65 &5203415281009972391
