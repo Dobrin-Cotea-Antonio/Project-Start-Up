@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7406034687410897715}
   - component: {fileID: 7406034687410897714}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Table_TV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,6 +135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TV_Cyberbreak
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690034504123055073, guid: 30c93ad35f27181439a163b8eb5fd68c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7690034504123055073, guid: 30c93ad35f27181439a163b8eb5fd68c,
         type: 3}

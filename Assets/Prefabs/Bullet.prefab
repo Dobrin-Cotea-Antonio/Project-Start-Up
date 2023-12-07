@@ -241,6 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1d27a736610464f9f82f537a530841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotSoundClip: {fileID: 8300000, guid: c7cb7c27f08b2c247b313731e1deedb9, type: 3}
+  hitSoundClip: {fileID: 8300000, guid: 00cd62c68f44ec64180fff1affed8e57, type: 3}
+  AudioMixer: {fileID: 24300002, guid: 5fe52f48d7ebbde4daf1defe866ce797, type: 2}
 --- !u!65 &2158577645196836012
 BoxCollider:
   m_ObjectHideFlags: 0

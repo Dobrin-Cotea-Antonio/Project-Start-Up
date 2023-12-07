@@ -16,7 +16,13 @@ public class HealingItem : Interactable{
     }
 
     void RestoreHp() {
+        if (GameManager.gameManager.levelCash < data.levelCost)
+            return;
+
+        GameManager.gameManager.levelCash -= data.levelCost;
+        GameManager.gameManager.playerUIManager.EnablePickUpPrompt(false);
         GameManager.gameManager.playerHp.RestoreHp(hpRestored);
+        Destroy(gameObject);
     }
 
 }

@@ -18,12 +18,12 @@ MonoBehaviour:
     m_Value: 2
   intensity:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 1
   scatter:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.7
   clamp:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 65472
   tint:
     m_OverrideState: 0
@@ -59,10 +59,10 @@ MonoBehaviour:
     m_Value: {x: 0.85638344, y: 0.97435707, z: 1, w: 0}
   midtones:
     m_OverrideState: 0
-    m_Value: {x: 0.95115876, y: 1, z: 0.9685301, w: 0}
+    m_Value: {x: 0.9996759, y: 1, z: 0.99344337, w: 0}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 0.9953505, y: 1, z: 0.97587824, w: 0}
+    m_Value: {x: 0.98178124, y: 1, z: 0.97259706, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
     m_Value: 0.15
   contrast:
     m_OverrideState: 1
-    m_Value: 4
+    m_Value: 15
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -130,7 +130,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 15
+    m_Value: 35
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,13 +167,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.44375637, g: 0.42207193, b: 0.7169812, a: 1}
+    m_Value: {r: 0.2261303, g: 0.2410682, b: 0.3018868, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.9673096, b: 0.71132076, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: -8
+    m_Value: -17
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -202,10 +202,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.124
+    m_Value: 0.108
 --- !u!114 &3486440033597906876
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -218,13 +218,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
   m_Name: LiftGammaGain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   lift:
     m_OverrideState: 1
     m_Value: {x: 0.96358895, y: 0.9760779, z: 1, w: 0}
   gamma:
-    m_OverrideState: 0
-    m_Value: {x: 0.94158536, y: 1, z: 0.92763656, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.9690222, y: 1, z: 0.984833, w: 0.15209123}
   gain:
-    m_OverrideState: 0
-    m_Value: {x: 0.9518573, y: 1, z: 0.8891345, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.9980854, z: 0.9470592, w: 0.22813685}

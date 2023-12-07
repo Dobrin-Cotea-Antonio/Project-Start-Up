@@ -399,6 +399,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7e01f2f2757054db3d3536a1fea148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicMultiplier: 4
+  animator: {fileID: 0}
+  hp: {fileID: 0}
   speed: 4
   canLoseAgro: 0
   chaseRange: 16
@@ -433,6 +436,7 @@ MonoBehaviour:
   hpImageBar: {fileID: 8301259032380195303}
   text: {fileID: 6831871801784216718}
   hpComponent: {fileID: 1905369723294757432}
+  slideBar: 0
   dissapearAfterTime: 1
   timeToDissapear: 3
 --- !u!1 &8992150013045465967

@@ -20,7 +20,6 @@ public class ShooterEnemyScript : EnemyAI{
         canLeaveAttackState = true;
         lastAttackTime = float.MaxValue;
         
-        //targetTransform = GameManager.gameManager.player.GetComponent<PlayerControls>().GetRefPoint();
     }
 
 
@@ -40,10 +39,6 @@ public class ShooterEnemyScript : EnemyAI{
     }
 
     public void Shoot(){
-
-        //float angle = Vector3.Angle((shootPosition.position - targetTransform.position).normalized, transform.forward);
-        
-        //Debug.Log(targetTransformMove);
 
         lastAttackTime = float.MaxValue;
         GameObject b1 = Instantiate(bulletPrefab, shootPosition.position, Quaternion.identity);

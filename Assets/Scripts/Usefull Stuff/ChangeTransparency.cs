@@ -13,30 +13,8 @@ public class ChangeTransparency : MonoBehaviourWithPause{
     Shader originalShader;
     public bool isTransparent { get; private set; }
 
-    float timeSinceStart;
-
-    bool action1Complete = false;
-    bool action2Complete = false;
-
     private void Awake(){
         isTransparent = false;
-    }
-
-    protected override void UpdateWithPause(){
-
-        //timeSinceStart += Time.deltaTime;
-
-        //if (timeSinceStart > 5 && timeSinceStart < 10 && !action1Complete) {
-        //    action1Complete = true;
-        //    SetTransparency();
-        //}
-
-        //if (timeSinceStart > 10 && !action2Complete) {
-        //    action2Complete = true;
-        //    Debug.Log("ambatugenocide");
-        //    SetTransparency();
-        //}
-
     }
 
     public void SetTransparency() {
@@ -54,8 +32,6 @@ public class ChangeTransparency : MonoBehaviourWithPause{
 
         foreach (Transform r in transform.GetComponentsInChildren<Transform>()) 
             allChildrenTransforms.Add(r);
-
-        Debug.Log(allChildrenTransforms.Count);
 
         for (int i = 0; i < allChildrenTransforms.Count; i++)
             FindMaterialsAndChangeTransparency(allChildrenTransforms[i].GetComponent<Renderer>(), alphaValue);

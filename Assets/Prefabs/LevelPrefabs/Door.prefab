@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 6998130611672618150}
   - component: {fileID: 6998130611672618149}
   - component: {fileID: 6998130611672618151}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: NextLevelCollider
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6998130611672618152
 Transform:
@@ -92,12 +92,12 @@ GameObject:
   - component: {fileID: 6998130612223475474}
   - component: {fileID: 6998130612223475475}
   - component: {fileID: 6998130612223475476}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6998130612223475473
 Transform:

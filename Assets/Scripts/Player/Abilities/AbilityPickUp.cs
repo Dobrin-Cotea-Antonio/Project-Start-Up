@@ -24,6 +24,7 @@ public class AbilityPickUp : Interactable{
         
         if (GameManager.gameManager.abilityManager.AddAbility(abilityIndex, pAbilitySlot)) {
             GameManager.gameManager.levelCash -= data.levelCost;
+            GameManager.gameManager.playerUIManager.EnableAbilityPickUpPrompt(false);
             Destroy(gameObject);
         }
 

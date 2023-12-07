@@ -879,13 +879,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd33bfb44e87fba48930ebea4a0e58c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicMultiplier: 2
+  musicMultiplier: 5
   animator: {fileID: 7474777292874467696}
   hp: {fileID: 3724515001782879745}
   speed: 5
   canLoseAgro: 0
-  chaseRange: 24
-  attackRange: 14
+  chaseRange: 14.5
+  attackRange: 16.3
   attackCooldown: 0.6
   muzzleFlashPrefab: {fileID: 5195697588493737052, guid: 02e4256ea2871b248afac8e73b5a249e,
     type: 3}
@@ -895,7 +895,7 @@ MonoBehaviour:
   aimSpread: 15
   bulletSpeed: 60
   bulletRange: 100
-  bulletDamage: 10
+  bulletDamage: 5
 --- !u!1 &8984878660555012709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4477837336391358100, guid: 765c914af6ff565458e01c32d6ccb7b8,
