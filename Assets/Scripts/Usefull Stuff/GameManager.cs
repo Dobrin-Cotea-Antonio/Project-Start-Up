@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviourWithPause {
             limbPrefabs = new GameObject[4] { null, null, null, null };
 
 
-            levelCash = 0;
+            levelCash = 1000;
             roomSelected = -1;
             gameManager = this;
             currentRoomReward = RewardTypes.Ability;

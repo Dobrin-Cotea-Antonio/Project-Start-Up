@@ -2,17 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSpawnPreset : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class ItemSpawnPreset : MonoBehaviourWithPause{
+
+    [SerializeField] GameManager.RewardTypes type;
+    [SerializeField] bool isShopItem;
+
+    bool spawnedItem = false;
+
+
+    protected override void UpdateWithPause() {
+        if (!spawnedItem) {
+            SpawnItem();
+            spawnedItem = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void SpawnItem() {
+
+        switch (type){
+            case GameManager.RewardTypes.Ability:
+                if (isShopItem)
+                    RoomManager.roomManager.SpawnAbility(true, transform.position.x, transform.position.y, transform.position.z);
+                else 
+                    RoomManager.roomManager.SpawnAbility(false, transform.position.x, transform.position.y, transform.position.z);
+                break;
+            case GameManager.RewardTypes.Hp:
+                if (isShopItem)
+                    RoomManager.roomManager.SpawnHp(true, transform.position.x, transform.position.y, transform.position.z);
+                else
+                    RoomManager.roomManager.SpawnHp(false, transform.position.x, transform.position.y, transform.position.z);
+                break;
+            case GameManager.RewardTypes.Limb:
+                if (isShopItem)
+                    RoomManager.roomManager.SpawnLimbs(true, transform.position.x, transform.position.y, transform.position.z);
+                else
+                    RoomManager.roomManager.SpawnLimbs(false, transform.position.x, transform.position.y, transform.position.z);
+                break;
+
+
+        }
+
     }
 }

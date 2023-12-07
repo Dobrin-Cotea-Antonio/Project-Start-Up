@@ -70,7 +70,7 @@ public class RoomManager : MonoBehaviourWithPause {
     
     }
 
-    void SpawnAbility(bool pIsShopItem=false) {
+    public void SpawnAbility(bool pIsShopItem = false, float pPosX = 0,float pPosY = 0,float pPosZ=0) {
 
         List<int> abilityIndexes = new List<int>();
         for (int i = 0; i < 4; i++)
@@ -80,7 +80,12 @@ public class RoomManager : MonoBehaviourWithPause {
 
         int abilityIndex = Random.Range(0, abilityIndexes.Count);
 
-        GameObject g = Instantiate(abilityCards[abilityIndexes[abilityIndex]], dropPoint.transform.position, Quaternion.identity);
+        Vector3 position=new Vector3(pPosX,pPosY,pPosZ);
+
+        if (position.magnitude == 0)
+            position = dropPoint.transform.position;
+
+        GameObject g = Instantiate(abilityCards[abilityIndexes[abilityIndex]], position, Quaternion.identity);
 
         if (pIsShopItem){
             InteractableData data = g.GetComponent<InteractableData>();
@@ -89,9 +94,16 @@ public class RoomManager : MonoBehaviourWithPause {
         }
     }
 
-    void SpawnHp(bool pIsShopItem = false) {
+    public void SpawnHp(bool pIsShopItem = false, float pPosX = 0, float pPosY = 0, float pPosZ = 0) {
 
-        GameObject g = Instantiate(hp, dropPoint.transform.position, Quaternion.identity);
+        Vector3 position = new Vector3(pPosX, pPosY, pPosZ);
+
+        if (position.magnitude == 0)
+            position = dropPoint.transform.position;
+
+        GameObject g = Instantiate(hp, position, Quaternion.identity);
+
+
         if (pIsShopItem) {
             InteractableData data = g.GetComponent<InteractableData>();
             data.isShopItem = true;
@@ -100,9 +112,15 @@ public class RoomManager : MonoBehaviourWithPause {
     
     }
 
-    void SpawnLimbs(bool pIsShopItem = false) {
+    public void SpawnLimbs(bool pIsShopItem = false, float pPosX = 0, float pPosY = 0, float pPosZ = 0) {
+
+        Vector3 position = new Vector3(pPosX, pPosY, pPosZ);
+
+        if (position.magnitude==0)
+            position = dropPoint.transform.position;
+
         int limbIndex = Random.Range(0, limbs.Length);
-        GameObject g = Instantiate(limbs[limbIndex],dropPoint.transform.position,Quaternion.identity);
+        GameObject g = Instantiate(limbs[limbIndex],position,Quaternion.identity);
 
         if (pIsShopItem){
             InteractableData data = g.GetComponent<InteractableData>();
