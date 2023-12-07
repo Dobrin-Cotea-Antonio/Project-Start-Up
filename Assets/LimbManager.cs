@@ -22,7 +22,6 @@ public class LimbManager : MonoBehaviourWithPause {
 
     protected override void UpdateWithPause(){
 
-        Debug.Log("Bussing");
         if (!setData){
             if (GameManager.gameManager.limbsData[0]!=null)
                 GetDataFromGameManager();
