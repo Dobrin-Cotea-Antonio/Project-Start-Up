@@ -13,12 +13,11 @@ public class ArrowManager : MonoBehaviourWithPause {
 
     private void Awake() {
         arrowManager = this;
-        enabled = false;
+        gameObject.SetActive(false);
     }
 
     private void Start() {
         doors = FindObjectsOfType<DoorScript>();
-
     }
 
     protected override void UpdateWithPause() {
@@ -34,7 +33,7 @@ public class ArrowManager : MonoBehaviourWithPause {
     }
 
     public void ChangeStatus(bool pState) {
-        enabled = pState;
+        gameObject.SetActive(pState);
     }
 
 }
