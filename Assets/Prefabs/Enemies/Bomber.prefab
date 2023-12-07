@@ -71,12 +71,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicMultiplier: 2
   animator: {fileID: 6333888547365717946}
-  speed: 7
+  hp: {fileID: 4024330955479752224}
+  speed: 14
   canLoseAgro: 0
-  chaseRange: 20
+  chaseRange: 10
   attackRange: 3.5
   attackCooldown: 100
-  hp: {fileID: 4024330955479752224}
   explosionScale: 1.5
   explosionPrefab: {fileID: 2403678169344112750, guid: ec1d9d81fe58aa047bc7c476c5ae5fe4,
     type: 3}

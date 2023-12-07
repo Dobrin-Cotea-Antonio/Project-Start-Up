@@ -8127,9 +8127,9 @@ MonoBehaviour:
     type: 3}
   spreadHipFire: 10
   spreadAim: 0
-  shotCooldown: 0.3
+  shotCooldown: 0.1
   aimSpeedDecrease: -50
-  damageBullet: 25
+  damageBullet: 15
   rangeBullet: 100
   speedBullet: 75
 --- !u!114 &5203415281009972408

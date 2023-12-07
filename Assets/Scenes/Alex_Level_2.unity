@@ -6861,16 +6861,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 1886754325979837956, guid: aa47228d9254763459c7b8c29868ee61,
-        type: 3}
-      propertyPath: speed
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1886754325979837956, guid: aa47228d9254763459c7b8c29868ee61,
-        type: 3}
-      propertyPath: chaseRange
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8214232344416993995, guid: aa47228d9254763459c7b8c29868ee61,
         type: 3}
       propertyPath: m_RootOrder
@@ -13067,22 +13057,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5203415281009972409, guid: 0bd95890acb5fd64eaca48e14b579972,
-        type: 3}
-      propertyPath: damageBullet
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203415281009972409, guid: 0bd95890acb5fd64eaca48e14b579972,
-        type: 3}
-      propertyPath: shotCooldown
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203415281009972415, guid: 0bd95890acb5fd64eaca48e14b579972,
-        type: 3}
-      propertyPath: dashPrefab
-      value: 
-      objectReference: {fileID: 3113624313314420589, guid: c1af8dbdfadddc9408c6798621626ae9,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bd95890acb5fd64eaca48e14b579972, type: 3}
 --- !u!1001 &1745056495
@@ -15290,21 +15264,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: chaseRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: canLoseAgro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1576510463769374746, guid: 0abe452be080435488a8359666d95b78,
-        type: 3}
-      propertyPath: bulletDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4275073560345626257, guid: 0abe452be080435488a8359666d95b78,
         type: 3}
       propertyPath: m_RootOrder
