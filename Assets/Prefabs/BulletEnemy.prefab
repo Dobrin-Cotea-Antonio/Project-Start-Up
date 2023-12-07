@@ -27,7 +27,7 @@ PrefabInstance:
         type: 3}
       propertyPath: hitSoundClip
       value: 
-      objectReference: {fileID: 8300000, guid: c67d93bfbc233f8419ae3d5871c3f08b, type: 3}
+      objectReference: {fileID: 8300000, guid: 00cd62c68f44ec64180fff1affed8e57, type: 3}
     - target: {fileID: 4121413125628792193, guid: 622737987255d6b4b93371fca8c76b5c,
         type: 3}
       propertyPath: shotSoundClip

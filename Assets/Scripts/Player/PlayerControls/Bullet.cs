@@ -63,7 +63,7 @@ public class Bullet : MonoBehaviourWithPause{
         HpComponent hp = collision.gameObject.GetComponent<HpComponent>();
 
         if (hp) {
-            PlaySFX(hitSoundClip, AudioMixer, 0.5f, 1);
+            PlaySFX(hitSoundClip, AudioMixer, 0.38f, 1);
             hp.TakeDamage(damage);
         }
         Destroy(gameObject);
