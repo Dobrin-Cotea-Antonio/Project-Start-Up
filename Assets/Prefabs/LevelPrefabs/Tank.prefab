@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7093271768785489913}
   - component: {fileID: 4850414433776339970}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,6 +115,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tank_new
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525796954517410508, guid: 159ab23e4cb6cff4da8a1cd6d067a062,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7525796954517410508, guid: 159ab23e4cb6cff4da8a1cd6d067a062,
         type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3186870307207095162}
   - component: {fileID: 1763862547219284842}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GlassTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,6 +115,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GlassTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109104102976954432, guid: 157e3339cee6996419a77d9855e579d1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4109104102976954432, guid: 157e3339cee6996419a77d9855e579d1,
         type: 3}

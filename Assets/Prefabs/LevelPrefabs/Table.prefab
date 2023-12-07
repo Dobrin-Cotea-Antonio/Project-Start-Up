@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1551154858724199493}
   - component: {fileID: 5424147369723683193}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,6 +135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Table_01 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072335085102167305, guid: 68429f113fe3aa54a926332a10db72c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4072335085102167305, guid: 68429f113fe3aa54a926332a10db72c9,
         type: 3}

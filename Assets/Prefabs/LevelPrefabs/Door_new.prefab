@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1345952349834933838, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345952349834933838, guid: 71245c65653a3574d9ccffe3df4685c5,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -74,8 +79,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4284039772480590564, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284039772480590564, guid: 71245c65653a3574d9ccffe3df4685c5,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623558276139794192, guid: 71245c65653a3574d9ccffe3df4685c5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4623558276139794192, guid: 71245c65653a3574d9ccffe3df4685c5,
         type: 3}
