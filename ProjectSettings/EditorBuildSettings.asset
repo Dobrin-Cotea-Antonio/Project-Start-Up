@@ -8,10 +8,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: fb7ed7f857ea0dd4e9171a22514f3a5d
-  - enabled: 0
-    path: Assets/Scenes/SceneAlexander.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/SceneMario.unity
-    guid: c6f132f7ee0ca0d49b368004c8d23ba0
+    path: Assets/Scenes/Hub.unity
+    guid: 2057f4e844e78db4f8ffb659936cef15
+  - enabled: 1
+    path: Assets/Scenes/Alex_Level_1.unity
+    guid: 3ff6841b29bcabb49a6c12c8f06998a1
+  - enabled: 1
+    path: Assets/Scenes/SceneAntonio.unity
+    guid: 64a1e8ccf0f87424cab0040bfa978008
+  - enabled: 1
+    path: Assets/Scenes/Shop_new.unity
+    guid: 6030de9fdaa1ca5489f1624d075b1f40
+  - enabled: 1
+    path: Assets/Scenes/Alex_Level_2.unity
+    guid: 8a282dcd27f54d74eac7ca742f53495f
+  - enabled: 1
+    path: Assets/Scenes/Lev_level_2.unity
+    guid: a6d6afe812c0ca44486f9f783820041d
   m_configObjects: {}
