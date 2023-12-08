@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-
-public class PlayerControls : MonoBehaviourWithPause {
+public class PlayerControls : MonoBehaviourWithPause //, IShopCustomer
+{
     // Start is called before the first frame update
 
     Rigidbody rb;
@@ -39,6 +40,10 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     Vector3 walkDirection = Vector3.zero;
 
+    public event EventHandler OnGoldAmountChanged;
+    public int goldAmount;
+
+
     //fix state machine bcz its shit
     public enum MovementStates {
         Idle,
@@ -56,8 +61,8 @@ public class PlayerControls : MonoBehaviourWithPause {
     public MovementStates movementState { get; set; }
     public AttackStates attackState { get; set; }
 
-    private void Awake(){
-        
+    private void Awake() {
+
     }
 
     void Start() {
@@ -94,8 +99,8 @@ public class PlayerControls : MonoBehaviourWithPause {
         StateMachineChooseState();
     }
 
-    void StateMachineExecution(){
-        switch (movementState){
+    void StateMachineExecution() {
+        switch (movementState) {
             case MovementStates.Idle:
                 //IdleState();
                 break;
@@ -113,8 +118,8 @@ public class PlayerControls : MonoBehaviourWithPause {
     void StateMachineChooseState() {
         ChooseWalkAnimationState();
 
-        switch (movementState){
-            case MovementStates.Idle:   
+        switch (movementState) {
+            case MovementStates.Idle:
                 IdleState();
                 break;
             case MovementStates.Walk:
@@ -148,7 +153,7 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     }
 
-    void Walk(){
+    void Walk() {
 
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
         Vector3 force = walkDirection * moveSpeed * data.movementSpeedMultiplier;
@@ -159,7 +164,7 @@ public class PlayerControls : MonoBehaviourWithPause {
     }
 
     void IdleState() {
-        if (input.moveDirection.magnitude != 0){
+        if (input.moveDirection.magnitude != 0) {
             movementState = MovementStates.Walk;
             return;
         }
@@ -172,9 +177,9 @@ public class PlayerControls : MonoBehaviourWithPause {
 
 
     IEnumerator Dash(Vector3 pDirection) {
-        float speed = dashRange * (1 / dashDuration)*data.dashSpeedMultiplier;
+        float speed = dashRange * (1 / dashDuration) * data.dashSpeedMultiplier;
 
-        rb.AddForce(speed*pDirection, ForceMode.VelocityChange);
+        rb.AddForce(speed * pDirection, ForceMode.VelocityChange);
 
         yield return new WaitForSecondsRealtime(dashDuration);
 
@@ -195,16 +200,16 @@ public class PlayerControls : MonoBehaviourWithPause {
 
     void StopDash() {
         movementState = MovementStates.Idle;
-        rb.velocity = new Vector3(0,rb.velocity.y,0);
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
 
     IEnumerator RecoverDashCharge() {
         yield return new WaitForSecondsRealtime(dashCooldown);
-        availableDashCharges = Mathf.Min(availableDashCharges + 1,dashChargesMax);
+        availableDashCharges = Mathf.Min(availableDashCharges + 1, dashChargesMax);
     }
 
     void SetModelDirection(Vector3 pDirection) {//instead of setting the rotation instantly rotate it by a certain amount until the desired rotation is reached
-        if (attackState == AttackStates.Idle){
+        if (attackState == AttackStates.Idle) {
             //Debug.Log(attackState);
 
 
@@ -288,7 +293,39 @@ public class PlayerControls : MonoBehaviourWithPause {
         animator.SetBool("WD", false);
         animator.SetBool("D", false);
         animator.SetBool("S", false);
-        animator.SetFloat("speed",1);
+        animator.SetFloat("speed", 1);
     }
 
+    public void AddGoldAmount(int addGoldAmount)
+    {
+        goldAmount += addGoldAmount;
+        OnGoldAmountChanged?.Invoke(this, EventArgs.Empty);
+    }
+    public int GetGoldAmount()
+    {
+        return goldAmount;
+    }
+
+    public void BoughtItem(Item.ItemType itemType)
+    {
+        Debug.Log("Bought Item:" + itemType);
+        switch (itemType)
+        {
+            //case Item.ItemType.Ability_1
+        }    
+    }
+
+    public bool TrySpendGoldAmount(int spendGoldAmount)
+    {
+        if (GetGoldAmount() >= spendGoldAmount)
+        {
+            goldAmount -= spendGoldAmount;
+            OnGoldAmountChanged?.Invoke(this, EventArgs.Empty);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
